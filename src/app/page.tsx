@@ -12,22 +12,35 @@ export default function Home() {
         <a href="#contact" className="hover:underline">Contact</a>
       </nav>
 
-      {/* Hero Section with Background Image */}
+      {/* Landing Section */}
       <section
-        className="flex flex-col items-center justify-center text-center text-black p-8 flex-grow bg-cover bg-center"
+        className="relative flex flex-col items-center justify-center text-center text-black p-8 min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/uyghur-cuisine.jpg')" }}
       >
         <h1 className="text-5xl font-bold mb-4">Welcome to Turpan Restaurant!</h1>
-        <a
+        
+      </section>
+      <a
           href="#booking"
           className="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition"
         >
           Make a Reservation
-        </a>
+      </a>
+      {/* Ratings Section */}
+      <section className="flex justify-center items-center bg-white py-16 px-4">
+        <div className="border-4 border-gray-200 p-4 rounded-lg shadow-md max-w-4xl w-full">
+          <Image
+            src="/feedthelion.jpg" 
+            alt="Good ratings from bloggers and platforms"
+            width={1200} 
+            height={600}
+            className="rounded-md object-contain"
+          />
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-black bg-opacity-90 text-white text-center text-sm py-4">
+      <footer className="w-full bg-white bg-opacity-90 text-black text-center text-sm py-4">
         <p>© 2025 Turpan Restaurant | All rights reserved</p>
         <p>
           <a href="tel:+442076369949" className="hover:underline">Call us: 020 7636 9949</a>
