@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { playfair } from './layout';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
@@ -20,7 +21,7 @@ import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
           className="relative flex flex-col items-center justify-center text-center text-black p-8 min-h-screen bg-cover bg-center"
           style={{ backgroundImage: "url('/uyghur-cuisine.jpg')" }}
         >
-          <h1 className="text-5xl font-bold mb-4">Welcome to Turpan Restaurant!</h1>
+          <h1 className={`${playfair.className} text-white text-6xl md:text-7xl font-bold mb-4 drop-shadow-xl`}>Journey Through Taste</h1>
           
         </section>
         <a
@@ -42,50 +43,70 @@ import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
           </div>
         </section>
         <section className="flex flex-col items-center justify-center bg- py-16 px-4">
+          <div className="flex flex-wrap justify-center gap-8">
+            
+            {/* Feed the Lion */}
+            <div className="text-center">
+              <Image
+                  src="/feedthelion-logo.png" 
+                  alt="Feed the Lion"
+                  width={100} 
+                  height={100}
+                  className="mb-2"
+              />
+              <p className="text-xl font-semibold mb-2">Feed the Lion</p>
+              <div className="flex justify-center text-yellow-500 text-2xl mb-1">
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={faStarHalfAlt} />
+              </div>
+              <p className="text-gray-600">4.5/5</p>
+            </div>
 
-  <div className="flex flex-wrap justify-center gap-8">
-    
-    {/* Feed the Lion */}
-    <div className="text-center">
-      <p className="text-xl font-semibold mb-2">Feed the Lion</p>
-      <div className="flex justify-center text-yellow-500 text-2xl mb-1">
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={faStarHalfAlt} />
-      </div>
-      <p className="text-gray-600">4.5/5</p>
-    </div>
+            {/* Google */}
+            <div className="text-center">
+              <Image
+                src="/google-logo.svg" 
+                alt="Google"
+                width={100} 
+                height={100}
+                className="mb-2"
+              />
+              <p className="text-xl font-semibold mb-2">Google</p>
+              <div className="flex justify-center text-yellow-500 text-2xl mb-1">
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={faStarHalfAlt} />
+              </div>
+              <p className="text-gray-600">4.6/5</p>
+            </div>
 
-    {/* Google */}
-    <div className="text-center">
-      <p className="text-xl font-semibold mb-2">Google</p>
-      <div className="flex justify-center text-yellow-500 text-2xl mb-1">
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={faStarHalfAlt} />
-      </div>
-      <p className="text-gray-600">4.6/5</p>
-    </div>
+            {/* TripAdvisor */}
+            <div className="text-center">
+              <Image
+                    src="/tripadvisor-logo.svg" 
+                    alt="Tripadvisor"
+                    width={100} 
+                    height={100}
+                    className="mb-2"
+              />
+              <p className="text-xl font-semibold mb-2">Tripadvisor</p>
+              <div className="flex justify-center text-yellow-500 text-2xl mb-1">
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={solidStar} />
+                <FontAwesomeIcon icon={faStarHalfAlt} />
+              </div>
+              <p className="text-gray-600">4.6/5</p>
+            </div>
+          </div>
+        </section>
 
-    {/* TripAdvisor */}
-    <div className="text-center">
-      <p className="text-xl font-semibold mb-2">TripAdvisor</p>
-      <div className="flex justify-center text-yellow-500 text-2xl mb-1">
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={solidStar} />
-        <FontAwesomeIcon icon={faStarHalfAlt} />
-      </div>
-      <p className="text-gray-600">4.6/5</p>
-    </div>
-
-  </div>
-</section>
         {/* Footer */}
         <footer className="w-full bg-white bg-opacity-90 text-black text-center text-sm py-4">
           <p>© 2025 Turpan Restaurant | All rights reserved</p>
