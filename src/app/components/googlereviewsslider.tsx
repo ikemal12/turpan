@@ -17,8 +17,8 @@ export default function GoogleReviewsSlider() {
       {/* Render the reviews in a slider/carousel here */}
       {reviews.map((review, idx) => (
         <div key={idx} className="p-4 border rounded mb-4 bg-white">
-          <p className="font-semibold">{review.author_name}</p>
-          <p>{review.text}</p>
+          <p className="text-black font-semibold">{review.author_name}</p>
+          <p className="text-black">{review.text}</p>
         </div>
       ))}
     </div>

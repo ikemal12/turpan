@@ -16,7 +16,13 @@ export async function GET() {
 
     const reviews = data.result.reviews || [];
 
-    return NextResponse.json({ reviews });
+    const filteredReviews = reviews.map((review: any) => ({
+      author_name: review.author_name,
+      text: review.text,
+      rating: review.rating, 
+    }));
+
+    return NextResponse.json({ filteredReviews });
   } catch (err) {
     return NextResponse.json({ error: "Failed to fetch reviews" }, { status: 500 });
   }

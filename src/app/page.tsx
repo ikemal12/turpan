@@ -47,7 +47,7 @@ export default function Home() {
       {/* Customer Reviews Section */}
       <section className="flex justify-center items-center bg-white py-16 px-4">
         <div className="max-w-4xl w-full">
-          <h2 className="text-2xl font-bold text-center mb-8">Customer Reviews</h2>
+          <h2 className="text-black text-2xl font-bold text-center mb-8">Customer Reviews</h2>
           <GoogleReviewsSlider />
           {/* Review Slider */}
           <div className="relative">
