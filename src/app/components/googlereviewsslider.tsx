@@ -7,7 +7,7 @@ export default function GoogleReviewsSlider() {
     async function fetchReviews() {
       const res = await fetch("/api/google-reviews");
       const data = await res.json();
-      setReviews(data.reviews);
+      setReviews(data.filteredReviews ?? []);
     }
     fetchReviews();
   }, []);
