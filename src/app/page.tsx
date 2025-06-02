@@ -28,11 +28,11 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* Navbar */}
       <nav className="w-full bg-white bg-opacity-80 text-black flex justify-center space-x-8 py-4 text-lg font-medium shadow-md">
-        <a href="#" className="hover:underline">Home</a>
-        <a href="#about" className="hover:underline">About</a>
-        <a href="#menu" className="hover:underline">Menu</a>
-        <a href="#booking" className="hover:underline">Make a Booking</a>
-        <a href="#contact" className="hover:underline">Contact</a>
+        <a href="/" className="hover:underline">Home</a>
+        <a href="/about" className="hover:underline">About</a>
+        <a href="/menu" className="hover:underline">Menu</a>
+        <a href="/booking" className="hover:underline">Make a Booking</a>
+        <a href="/contact" className="hover:underline">Contact</a>
       </nav>
 
       {/* Landing Section */}
