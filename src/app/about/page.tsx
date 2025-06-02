@@ -104,7 +104,7 @@ export default function About() {
               <div className="text-center">
                 <div className="mb-6">
                   <Image
-                    src="/spices (2).jpg"
+                    src="/spices.jpg"
                     alt="Spiced lamb dishes"
                     width={300}
                     height={200}
