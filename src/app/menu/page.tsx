@@ -60,6 +60,13 @@ export default function Menu() {
         popular: true
       },
       {
+        name: "Marjan Chop",
+        description: "Homemade chopped noodles, stir-fried with beef / chicken and vegetables",
+        price: "£14.95",
+        spicy: false,
+        popular: false
+      },
+      {
         name: "Tohu Qordaq (Big Plate Chicken)",
         description: "Spiced chicken with potatoes and bell peppers, cooked with garlic, ginger, soya sauce and other herbs, served with hand-pulled flat noodles",
         price: "£28.95",
