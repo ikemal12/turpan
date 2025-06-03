@@ -153,6 +153,13 @@ export default function Home() {
         price: "£15.95",
         spicy: false,
         popular: false
+      },
+      {
+        name: "Beliq Shorpa",
+        description: "Chopped sea bass boiled with mushroom and herbs, served with rice",
+        price: "£16.95",
+        spicy: false,
+        popular: false
       }
     ],
     sides: [
@@ -611,49 +618,76 @@ export default function Home() {
           </div>
 
           {/* Call to Action */}
-          <div className="text-center">
-            <h3 className={`${playfair.className} text-3xl font-bold text-black mb-4`}>
-              Ready to Order?
-            </h3>
-            <p className="text-gray-700 mb-6 text-lg">
-              Visit us today or call to make a reservation
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300"
-              >
-                Contact Us
-              </button>
-              <a
-                href="tel:+442076369949"
-                className="border-2 border-red-600 text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors duration-300"
-              >
-                Call Now
-              </a>
+          <div 
+            className="relative py-16 px-4 bg-cover bg-center bg-no-repeat text-center"
+            style={{ backgroundImage: "url('/tohu-qordaq.jpg')" }}
+          >
+            {/* Semi-transparent overlay for better text readability (adjust opacity as needed) */}
+            <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+            
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <h3 className={`${playfair.className} text-3xl font-bold text-white mb-4 drop-shadow-md`}>
+                Ready to Order?
+              </h3>
+              <p className="text-white mb-6 text-lg drop-shadow-md">
+                Visit us today or call to make a reservation
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-lg"
+                >
+                  Contact Us
+                </button>
+                <a
+                  href="tel:+442076369949"
+                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors duration-300 shadow-lg"
+                >
+                  Call Now
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CONTACT SECTION - Placeholder for now */}
-      <section id="contact" className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className={`${playfair.className} text-4xl font-bold text-black mb-8`}>Visit Us</h2>
-          <p className="text-xl text-gray-700 mb-8">
+      {/* CONTACT SECTION with visible background image */}
+      <section 
+        id="contact" 
+        className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/interior1.jpg')" }}
+      >
+        <div className="relative max-w-4xl mx-auto text-center z-10">
+          <h2 className={`${playfair.className} text-4xl font-bold text-white mb-8 drop-shadow-md`}>Visit Us</h2>
+          <p className="text-xl text-white mb-8 drop-shadow-md">
             Located in the heart of London, we welcome you to experience the warmth of Uyghur hospitality 
             and the authentic flavors of Central Asia.
           </p>
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h3 className="text-2xl font-semibold mb-6 text-black">Opening Hours & Contact</h3>
+          
+          <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-semibold mb-6 text-gray-800">Opening Hours & Contact</h3>
             <div className="grid md:grid-cols-2 gap-6 text-gray-700 text-lg">
               <div>
                 <p className="mb-2"><strong>Everyday:</strong> 12:00 PM - 9:00 PM</p>
                 <p className="mb-2"><strong>Address:</strong> 108 Great Russell St, London WC1B 3NA</p>
+                <a 
+                  href="https://maps.google.com/?q=108+Great+Russell+St,+London+WC1B+3NA" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block mt-3 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                >
+                  Get Directions
+                </a>
               </div>
               <div>
                 <p className="mb-2"><strong>Phone:</strong> <a href="tel:+442076369949" className="text-red-600 hover:underline">020 7636 9949</a></p>
-                <p className="mb-2"><strong>Instagram:</strong> @turpanuyghur</p>
+                <p className="mb-2"><strong>Email:</strong> <a href="mailto:info@turpanrestaurant.com" className="text-red-600 hover:underline">info@turpanrestaurant.com</a></p>
+                <p className="mb-2">
+                  <strong>Instagram:</strong> 
+                  <a href="https://instagram.com/turpanuyghur" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline ml-1">
+                    @turpanuyghur
+                  </a>
+                </p>
               </div>
             </div>
           </div>
