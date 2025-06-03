@@ -617,31 +617,39 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Call to Action */}
-          <div 
-            className="relative py-16 px-4 bg-cover bg-center bg-no-repeat text-center"
-            style={{ backgroundImage: "url('/tohu-qordaq.jpg')" }}
-          >
-            {/* Semi-transparent overlay for better text readability (adjust opacity as needed) */}
-            <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+          {/* Call to Action - Fixed Version */}
+          <div className="relative py-16 px-4 text-center min-h-[300px] flex items-center justify-center">
+            {/* Background Image with stronger contrast */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+              <Image
+                src="/assortment.jpg"
+                alt="Restaurant food background"
+                fill
+                className="object-cover"
+                quality={80}
+                priority
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-opacity-30"></div>
+            </div>
             
-            <div className="relative z-10 max-w-2xl mx-auto">
-              <h3 className={`${playfair.className} text-3xl font-bold text-white mb-4 drop-shadow-md`}>
+            <div className="relative z-20 max-w-2xl mx-auto">
+              <h3 className={`${playfair.className} text-4xl font-bold text-white mb-4 drop-shadow-lg`}>
                 Ready to Order?
               </h3>
-              <p className="text-white mb-6 text-lg drop-shadow-md">
+              <p className="text-white mb-6 text-xl font-medium drop-shadow-lg">
                 Visit us today or call to make a reservation
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-lg"
+                  className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-xl text-lg"
                 >
                   Contact Us
                 </button>
                 <a
                   href="tel:+442076369949"
-                  className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors duration-300 shadow-lg"
+                  className="border-2 border-red-600 bg-red-600/90 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors duration-300 shadow-xl text-lg"
                 >
                   Call Now
                 </a>
