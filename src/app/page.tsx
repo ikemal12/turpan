@@ -7,6 +7,7 @@ import { playfair } from './layout';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import { Star, Users, Globe } from 'lucide-react'
 
 export default function Home() {
   const [reviews, setReviews] = useState<any[]>([]);
@@ -374,7 +375,9 @@ export default function Home() {
             <h2 className={`${playfair.className} text-4xl font-bold text-black mb-12`}>Our Values</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="text-4xl mb-4">🌟</div>
+                <div className="flex justify-center mb-4">
+                  <Star className="w-12 h-12 text-amber-600" />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-black">Authenticity</h3>
                 <p className="text-gray-700">
                   Every recipe is prepared using traditional methods and authentic ingredients 
@@ -382,7 +385,9 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <div className="text-4xl mb-4">👨‍👩‍👧‍👦</div>
+                <div className="flex justify-center mb-4">
+                  <Users className="w-12 h-12 text-amber-600" />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-black">Family</h3>
                 <p className="text-gray-700">
                   We treat every guest as part of our extended family, providing warm hospitality 
@@ -390,7 +395,9 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <div className="text-4xl mb-4">🌍</div>
+                <div className="flex justify-center mb-4">
+                  <Globe className="w-12 h-12 text-amber-600" />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-black">Cultural Bridge</h3>
                 <p className="text-gray-700">
                   We're proud to share Uyghur culture and cuisine, fostering understanding 
@@ -403,27 +410,29 @@ export default function Home() {
       </section>
 
       {/* REVIEWS SECTION */}
-      <section id="reviews" className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className={`${playfair.className} text-4xl font-bold text-center mb-12 text-black`}>What Our Customers Say</h2>
-          
-          {/* Google Reviews Slider Component */}
-          <div className="mb-12">
-            <GoogleReviewsSlider />
-          </div>
-
+        <section id="reviews" className="py-20 px-4 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className={`${playfair.className} text-4xl font-bold text-center mb-12 text-black`}>What Our Customers Say</h2>
+            
+            {/* Google Reviews Slider Component */}
+            <div className="mb-12">
+              <GoogleReviewsSlider />
+            </div>
+            
           {/* Manual Review Slider */}
           <div className="relative mb-16">
             <div className="flex space-x-4 overflow-x-scroll pb-4">
               {reviews.map((review, index) => (
                 <div
                   key={index}
-                  className="flex-none w-80 p-6 border-2 border-gray-200 rounded-lg shadow-lg bg-white"
+                  className="flex-none w-80 p-6 bg-amber-50 rounded-xl shadow-lg border-2 border-amber-200"
                 >
-                  <p className="font-semibold mb-2 text-black">{review.author_name}</p>
-                  <p className="text-yellow-500 mb-2">{'★'.repeat(Math.round(review.rating))}</p>
-                  <p className="text-gray-700 mb-3">{review.text}</p>
-                  <p className="text-right text-sm text-gray-500">{review.time}</p>
+                  <p className="font-semibold mb-3 text-amber-900">{review.author_name}</p>
+                  <div className="text-amber-500 mb-4 text-2xl">
+                    {'★'.repeat(Math.round(review.rating))}
+                  </div>
+                  <p className="text-amber-800 mb-4 leading-relaxed">{review.text}</p>
+                  <p className="text-right text-sm text-amber-600">{review.time}</p>
                 </div>
               ))}
             </div>
