@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from '../../../../lib/supabaseClient';
+import { sendBookingEmails } from '../../../../lib/emailService';
 
 const RESTAURANT_CONFIG = {
   OPENING_TIME: '12:00',
@@ -7,7 +8,7 @@ const RESTAURANT_CONFIG = {
   LAST_BOOKING_TIME: '20:30',
   MIN_PARTY_SIZE: 1,
   MAX_PARTY_SIZE: 12,
-  BOOKING_INTERVAL_MINUTES: 15, 
+  BOOKING_INTERVAL_MINUTES: 15,
 };
 
 const validateEmail = (email: string): boolean => {
@@ -52,7 +53,6 @@ const validateTime = (timeString: string): { isValid: boolean; error?: string } 
   
   const [hours, minutes] = timeString.split(':').map(Number);
   const timeInMinutes = hours * 60 + minutes;
-  
   const openingTime = 12 * 60; 
   const lastBookingTime = 20 * 60 + 30; 
   
@@ -230,18 +230,36 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-    console.log('Success! Reservation created:', data[0]);
+    const createdBooking = data[0];
+    console.log('Success! Reservation created:', createdBooking);
+    
+    console.log('Sending email notifications...');
+    try {
+      const emailResults = await sendBookingEmails(createdBooking);
+      
+      if (emailResults.errors.length > 0) {
+        console.warn('Some emails failed to send:', emailResults.errors);
+      }
+      
+      console.log('Email results:', {
+        customer: emailResults.customerSuccess ? 'sent' : 'failed',
+        restaurant: emailResults.restaurantSuccess ? 'sent' : 'failed'
+      });
+      
+    } catch (emailError) {
+      console.error('Error sending emails:', emailError);
+    }
     
     return NextResponse.json({
       message: 'Reservation created successfully! We will confirm your booking shortly.',
       reservation: {
-        id: data[0].id,
-        name: data[0].name,
-        email: data[0].email,
-        party_size: data[0].party_size,
-        date: data[0].date,
-        time: data[0].time,
-        status: data[0].status
+        id: createdBooking.id,
+        name: createdBooking.name,
+        email: createdBooking.email,
+        party_size: createdBooking.party_size,
+        date: createdBooking.date,
+        time: createdBooking.time,
+        status: createdBooking.status
       }
     }, { status: 201 });
 
