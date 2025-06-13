@@ -2,9 +2,21 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '../../../../lib/supabaseClient';
 import { Resend } from 'resend';
 
+interface Booking {
+  id: string;
+  name: string;
+  email: string;
+  date: string;
+  time: string;
+  party_size: number;
+  phone_number?: string;
+  special_requests?: string;
+  // Add any other properties your booking objects have
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(_request: NextRequest) {
+export async function POST() {
   try {
     console.log('=== REMINDER EMAIL ROUTE HIT ===');
 
@@ -120,7 +132,7 @@ export async function POST(_request: NextRequest) {
 }
 
 // Helper function to generate the reminder email HTML
-function generateReminderEmailHTML(booking: any) {
+function generateReminderEmailHTML(booking: Booking) {
   return `
     <!DOCTYPE html>
     <html>

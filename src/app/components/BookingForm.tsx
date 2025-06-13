@@ -70,7 +70,7 @@ export default function BookingForm() {
           setStatus(`Error: ${responseData.message}`)
         }
       }
-    } catch (_err) {
+    } catch {
       setStatus('Something went wrong.')
     }
   }

@@ -33,7 +33,7 @@ export async function GET() {
 }))
 
     return NextResponse.json({ filteredReviews });
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch reviews" }, { status: 500 });
   }
 }

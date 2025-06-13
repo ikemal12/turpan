@@ -1,8 +1,17 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  time: number;
+  profile_photo_url?: string;
+  // Add any other properties you're using
+}
+
 export default function GoogleReviewsSlider() {
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -84,7 +93,7 @@ export default function GoogleReviewsSlider() {
 
                 {/* Review text */}
                 <blockquote className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8 italic">
-                  '{review.text}'
+                  &apos;{review.text}&apos;
                 </blockquote>
 
                 {/* Stars */}
