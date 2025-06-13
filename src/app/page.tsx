@@ -3,10 +3,15 @@ import Image from "next/image";
 import React, { useEffect, useState } from 'react';
 import { fetchGoogleReviews } from './utils/googlereviews';
 import GoogleReviewsSlider from "./components/googlereviewsslider";
-import { playfair } from './layout';
+import { Playfair_Display } from "next/font/google";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 import { Star, Users, Globe } from 'lucide-react'
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: '700', 
+});
 
 interface GoogleReview {
   author_name: string;
