@@ -19,7 +19,6 @@ interface GoogleReview {
   text: string;
   time: number;
   profile_photo_url?: string;
-  // Add any other properties you're using
 }
 
 export default function Home() {
@@ -259,7 +258,6 @@ export default function Home() {
     { id: 'drinks', name: 'Drinks and Deserts', icon: '🫖' }
   ];
 
-  // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -639,9 +637,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Call to Action - Fixed Version */}
+          {/* Call to Action */}
           <div className="relative py-16 px-4 text-center min-h-[300px] flex items-center justify-center">
-            {/* Background Image with stronger contrast */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <Image
                 src="/assortment.jpg"
@@ -681,7 +678,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONTACT SECTION with visible background image */}
+      {/* CONTACT SECTION */}
       <section 
         id="contact" 
         className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"

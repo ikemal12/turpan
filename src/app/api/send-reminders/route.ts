@@ -20,12 +20,10 @@ export async function POST() {
   try {
     console.log('=== REMINDER EMAIL ROUTE HIT ===');
 
-    // Calculate the target date (24 hours from now)
     const targetDate = new Date();
     targetDate.setHours(targetDate.getHours() + 24);
     
-    // Format for Supabase query (adjust based on your date column format)
-    const targetDateStr = targetDate.toISOString().split('T')[0]; // YYYY-MM-DD format
+    const targetDateStr = targetDate.toISOString().split('T')[0];
     
     console.log('Looking for bookings on:', targetDateStr);
 
@@ -38,7 +36,7 @@ export async function POST() {
       .select('*')
       .eq('date', targetDateStr)
       .eq('reminder_sent', false)
-      .in('status', ['confirmed', 'pending']); // Include both confirmed and pending
+      .in('status', ['confirmed', 'pending']);
 
     if (queryError) {
       console.error('Database query error:', queryError);
@@ -58,14 +56,12 @@ export async function POST() {
 
     console.log(`Found ${bookings.length} bookings requiring reminders`);
 
-    // Send reminder emails
     const emailResults = [];
     
     for (const booking of bookings) {
       try {
-        // Send reminder email
         const emailResult = await resend.emails.send({
-          from: 'Turpan Restaurant <noreply@yourdomain.com>', // Update with your domain
+          from: 'Turpan Restaurant <noreply@yourdomain.com>', // Update with new domain
           to: booking.email,
           subject: `Reminder: Your reservation tomorrow at Turpan Restaurant`,
           html: generateReminderEmailHTML(booking),
@@ -73,7 +69,6 @@ export async function POST() {
 
         console.log(`Reminder sent to ${booking.email}:`, emailResult);
 
-        // Update booking to mark reminder as sent
         const { error: updateError } = await supabaseAdmin
           .from('Reservations')
           .update({ 
@@ -110,7 +105,6 @@ export async function POST() {
       }
     }
 
-    // Return summary
     const successful = emailResults.filter(r => r.status === 'success').length;
     const failed = emailResults.filter(r => r.status === 'failed').length;
 
@@ -131,7 +125,6 @@ export async function POST() {
   }
 }
 
-// Helper function to generate the reminder email HTML
 function generateReminderEmailHTML(booking: Booking) {
   return `
     <!DOCTYPE html>

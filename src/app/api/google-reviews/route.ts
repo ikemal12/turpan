@@ -6,7 +6,6 @@ interface GoogleReview {
   text: string;
   time: number;
   profile_photo_url?: string;
-  // Add other properties you're using
 }
 
 export async function GET() {
@@ -29,7 +28,6 @@ export async function GET() {
   author: review.author_name,
   rating: review.rating,
   text: review.text,
-  // ... other properties
 }))
 
     return NextResponse.json({ filteredReviews });
