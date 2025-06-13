@@ -84,7 +84,7 @@ export default function GoogleReviewsSlider() {
 
                 {/* Review text */}
                 <blockquote className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8 italic">
-                  "{review.text}"
+                  '{review.text}'
                 </blockquote>
 
                 {/* Stars */}

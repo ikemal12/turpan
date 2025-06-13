@@ -6,11 +6,19 @@ import GoogleReviewsSlider from "./components/googlereviewsslider";
 import { playfair } from './layout';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { Star, Users, Globe } from 'lucide-react'
 
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  time: number;
+  profile_photo_url?: string;
+  // Add any other properties you're using
+}
+
 export default function Home() {
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [activeTab, setActiveTab] = useState('starters');
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY!;
@@ -23,7 +31,7 @@ export default function Home() {
     };
 
     getReviews();
-  }, []);
+  }, [apiKey, placeId]);
 
   const menuItems = {
     starters: [
@@ -299,7 +307,7 @@ export default function Home() {
                   tells a story of our homeland and the journey that brought us to share our culture with you.
                 </p>
                 <p>
-                  Our commitment goes beyond just serving food – we're preserving a cultural legacy and 
+                  Our commitment goes beyond just serving food – we are preserving a cultural legacy and 
                   creating a bridge between East and West, one meal at a time.
                 </p>
               </div>
@@ -400,7 +408,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-black">Cultural Bridge</h3>
                 <p className="text-gray-700">
-                  We're proud to share Uyghur culture and cuisine, fostering understanding 
+                  We are proud to share Uyghur culture and cuisine, fostering understanding 
                   and appreciation through food.
                 </p>
               </div>

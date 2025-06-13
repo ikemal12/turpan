@@ -1,5 +1,14 @@
 import { NextResponse } from "next/server";
 
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  time: number;
+  profile_photo_url?: string;
+  // Add other properties you're using
+}
+
 export async function GET() {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY!;
   const placeId = process.env.GOOGLE_PLACE_ID!;
@@ -16,11 +25,12 @@ export async function GET() {
 
     const reviews = data.result.reviews || [];
 
-    const filteredReviews = reviews.map((review: any) => ({
-      author_name: review.author_name,
-      text: review.text,
-      rating: review.rating, 
-    }));
+    const filteredReviews = reviews.map((review: GoogleReview) => ({
+  author: review.author_name,
+  rating: review.rating,
+  text: review.text,
+  // ... other properties
+}))
 
     return NextResponse.json({ filteredReviews });
   } catch (err) {
