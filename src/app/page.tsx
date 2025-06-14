@@ -25,17 +25,18 @@ export default function Home() {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [activeTab, setActiveTab] = useState('starters');
 
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY!;
-  const placeId = process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID!;
-
   useEffect(() => {
     const getReviews = async () => {
-      const reviewsData = await fetchGoogleReviews(apiKey, placeId);
-      setReviews(reviewsData);
+      try {
+        const reviewsData = await fetchGoogleReviews();
+        setReviews(reviewsData);
+      } catch {
+        console.error('Failed to fetch reviews');
+      }
     };
 
     getReviews();
-  }, [apiKey, placeId]);
+  }, []);
 
   const menuItems = {
     starters: [
@@ -491,7 +492,7 @@ export default function Home() {
             
             {/* Google Reviews Slider Component */}
             <div className="mb-12">
-              <GoogleReviewsSlider />
+              <GoogleReviewsSlider reviews={reviews}/>
             </div>
         </div>
       </section>

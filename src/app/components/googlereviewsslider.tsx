@@ -7,22 +7,15 @@ interface GoogleReview {
   text: string;
   time: number;
   profile_photo_url?: string;
-  // Add any other properties you're using
 }
 
-export default function GoogleReviewsSlider() {
-  const [reviews, setReviews] = useState<GoogleReview[]>([]);
+interface GoogleReviewsSliderProps {
+  reviews: GoogleReview[];
+}
+
+export default function GoogleReviewsSlider({ reviews }: GoogleReviewsSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  useEffect(() => {
-    async function fetchReviews() {
-      const res = await fetch("/api/google-reviews");
-      const data = await res.json();
-      setReviews(data.filteredReviews ?? []);
-    }
-    fetchReviews();
-  }, []);
 
   useEffect(() => {
     if (!isAutoPlaying || reviews.length <= 1) return;
