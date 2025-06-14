@@ -12,9 +12,6 @@ export default function BookingPage() {
           <p className="text-xl text-gray-600 mb-2">
             Experience authentic flavors in a warm, welcoming atmosphere
           </p>
-          <p className="text-gray-500">
-            Reserve your spot for an unforgettable dining experience
-          </p>
         </div>
       </div>
 
@@ -44,7 +41,7 @@ export default function BookingPage() {
               </div>
               <h3 className="font-semibold text-gray-800">Need Help?</h3>
               <p className="text-gray-600 text-sm">
-                Call us (020 7636 9949) for special requests<br />
+                Call us at 020 7636 9949 for special requests
                 or large group bookings
               </p>
             </div>

@@ -7,7 +7,7 @@ export default function BookingForm() {
     name: '',
     email: '',
     phone: '',
-    partySize: 2,
+    partySize: '',
     date: '',
     time: '',
   })
@@ -73,7 +73,7 @@ export default function BookingForm() {
 
       if (res.ok) {
         setStatus('success')
-        setForm({ name: '', email: '', phone: '', partySize: 2, date: '', time: '' })
+        setForm({ name: '', email: '', phone: '', partySize: '', date: '', time: '' })
         setSelectedDateIndex(null)
       } else {
         if (responseData.errors) {
@@ -135,9 +135,8 @@ export default function BookingForm() {
       <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-6">
         <h2 className="text-2xl font-bold text-white flex items-center gap-3">
           <Calendar className="w-6 h-6" />
-          Reserve Your Table
+          Reservation Details
         </h2>
-        <p className="text-orange-100 mt-2">Book your dining experience with us</p>
       </div>
 
       <form onSubmit={handleSubmit} className="p-8 space-y-8">
@@ -188,19 +187,17 @@ export default function BookingForm() {
 
           <div className="relative">
             <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-            <select 
-              name="partySize" 
-              value={form.partySize} 
+            <input
+              type="number"
+              name="partySize"
+              min="1"
+              max="12"
+              placeholder="Number of guests"
+              value={form.partySize}
               onChange={handleChange}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all appearance-none bg-white text-gray-700"
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all placeholder:text-gray-600 text-gray-800"
               required
-            >
-              {[...Array(12)].map((_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1} {i + 1 === 1 ? 'person' : 'people'}
-                </option>
-              ))}
-            </select>
+            />
           </div>
         </div>
 

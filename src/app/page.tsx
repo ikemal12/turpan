@@ -282,7 +282,17 @@ export default function Home() {
         className="relative flex flex-col items-center justify-center text-center text-black p-8 min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/uyghur-cuisine.jpg')" }}
       >
-        <h1 className={`${playfair.className} text-white text-6xl md:text-7xl font-bold mb-4 drop-shadow-xl`}>Journey Through Taste</h1>
+        <h1 className={`${playfair.className} text-white text-6xl md:text-7xl font-bold mb-8 drop-shadow-xl`}>Journey Through Taste</h1>
+        
+        {/* Book a Table Button */}
+        <div className="mt-8">
+          <a
+            href="/booking"
+            className="inline-block bg-red-600 text-white px-12 py-4 rounded-lg font-bold text-xl hover:bg-red-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 border-2 border-red-600 hover:border-red-700"
+          >
+            Book a Table
+          </a>
+        </div>
       </section>
 
       {/* ABOUT SECTION */}
