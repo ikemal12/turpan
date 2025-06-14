@@ -434,111 +434,65 @@ export default function Home() {
         <section id="reviews" className="py-20 px-4 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <h2 className={`${playfair.className} text-4xl font-bold text-center mb-12 text-black`}>What Our Customers Say</h2>
+
+            {/* Trust Badges - Platform Ratings */}
+            <div className="flex justify-center gap-8 mb-12">
+              <div className="flex items-center space-x-2">
+                <Image
+                  src="/google-logo.svg" 
+                  alt="Google"
+                  width={32} 
+                  height={32}
+                />
+                <div className="flex text-yellow-500 text-sm">
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={faStarHalfAlt} />
+                </div>
+                <span className="text-sm text-gray-600">4.6/5</span>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Image
+                  src="/tripadvisor-logo.svg" 
+                  alt="Tripadvisor"
+                  width={32} 
+                  height={32}
+                />
+                <div className="flex text-yellow-500 text-sm">
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={faStarHalfAlt} />
+                </div>
+                <span className="text-sm text-gray-600">4.6/5</span>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Image
+                  src="/feedthelion-logo.png" 
+                  alt="Feed the Lion"
+                  width={32} 
+                  height={32}
+                />
+                <div className="flex text-yellow-500 text-sm">
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={solidStar} />
+                  <FontAwesomeIcon icon={faStarHalfAlt} />
+                </div>
+                <span className="text-sm text-gray-600">4.5/5</span>
+              </div>
+            </div>
             
             {/* Google Reviews Slider Component */}
             <div className="mb-12">
               <GoogleReviewsSlider />
             </div>
-            
-          {/* Manual Review Slider */}
-          <div className="relative mb-16">
-            <div className="flex space-x-4 overflow-x-scroll pb-4">
-              {reviews.map((review, index) => (
-                <div
-                  key={index}
-                  className="flex-none w-80 p-6 bg-amber-50 rounded-xl shadow-lg border-2 border-amber-200"
-                >
-                  <p className="font-semibold mb-3 text-amber-900">{review.author_name}</p>
-                  <div className="text-amber-500 mb-4 text-2xl">
-                    {'★'.repeat(Math.round(review.rating))}
-                  </div>
-                  <p className="text-amber-800 mb-4 leading-relaxed">{review.text}</p>
-                  <p className="text-right text-sm text-amber-600">{review.time}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Platform Ratings */}
-          <div className="bg-white rounded-xl p-8 shadow-lg">
-            <h3 className={`${playfair.className} text-2xl font-bold text-center mb-8 text-black`}>Our Ratings</h3>
-            <div className="flex flex-wrap justify-center gap-12">
-              
-              {/* Feed the Lion */}
-              <div className="text-center">
-                <Image
-                    src="/feedthelion-logo.png" 
-                    alt="Feed the Lion"
-                    width={80} 
-                    height={80}
-                    className="mb-3 mx-auto"
-                />
-                <p className="text-lg font-semibold mb-2 text-black">Feed the Lion</p>
-                <div className="flex justify-center text-yellow-500 text-xl mb-1">
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={faStarHalfAlt} />
-                </div>
-                <p className="text-gray-600">4.5/5</p>
-              </div>
-
-              {/* Google */}
-              <div className="text-center">
-                <Image
-                  src="/google-logo.svg" 
-                  alt="Google"
-                  width={80} 
-                  height={80}
-                  className="mb-3 mx-auto"
-                />
-                <p className="text-lg font-semibold mb-2 text-black">Google</p>
-                <div className="flex justify-center text-yellow-500 text-xl mb-1">
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={faStarHalfAlt} />
-                </div>
-                <p className="text-gray-600">4.6/5</p>
-              </div>
-
-              {/* TripAdvisor */}
-              <div className="text-center">
-                <Image
-                      src="/tripadvisor-logo.svg" 
-                      alt="Tripadvisor"
-                      width={80} 
-                      height={80}
-                      className="mb-3 mx-auto"
-                />
-                <p className="text-lg font-semibold mb-2 text-black">Tripadvisor</p>
-                <div className="flex justify-center text-yellow-500 text-xl mb-1">
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={solidStar} />
-                  <FontAwesomeIcon icon={faStarHalfAlt} />
-                </div>
-                <p className="text-gray-600">4.6/5</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Press Coverage Image */}
-          <div className="mt-12 text-center">
-            <h3 className={`${playfair.className} text-2xl font-bold mb-6 text-black`}>Featured In</h3>
-            <div className="border-4 border-gray-200 p-4 rounded-lg shadow-md">
-              <Image
-                src="/feedthelion.jpg" 
-                alt="Good ratings from bloggers and platforms"
-                width={800} 
-                height={400}
-                className="rounded-md object-contain mx-auto"
-              />
-            </div>
-          </div>
         </div>
       </section>
 

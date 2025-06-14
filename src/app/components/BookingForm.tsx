@@ -320,7 +320,7 @@ export default function BookingForm() {
                 <CheckCircle className="w-5 h-5 text-green-600" />
                 <div>
                   <p className="font-semibold">Booking Confirmed!</p>
-                  <p className="text-sm">We'll send you a confirmation email shortly.</p>
+                  <p className="text-sm">We will send you a confirmation email shortly.</p>
                 </div>
               </>
             ) : status.startsWith('Error') || status === 'Something went wrong. Please try again.' ? (

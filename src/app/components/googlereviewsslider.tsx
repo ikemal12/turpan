@@ -154,15 +154,6 @@ export default function GoogleReviewsSlider() {
           ))}
         </div>
       )}
-
-      {/* Auto-play indicator */}
-      {reviews.length > 1 && (
-        <div className="text-center mt-4">
-          <p className="text-sm text-gray-500">
-            {isAutoPlaying ? "Auto-playing" : "Paused"} • {currentIndex + 1} of {reviews.length}
-          </p>
-        </div>
-      )}
     </div>
   );
 }
