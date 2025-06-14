@@ -1,5 +1,24 @@
 import { NextResponse } from 'next/server';
 
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  time: number;
+  profile_photo_url?: string;
+}
+
+interface GooglePlaceResult {
+  reviews?: GoogleReview[];
+  rating?: number;
+  user_ratings_total?: number;
+}
+
+interface GoogleApiResponse {
+  result?: GooglePlaceResult;
+  error_message?: string;
+}
+
 export async function GET() {
   const apiKey = process.env.GOOGLE_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
@@ -20,14 +39,14 @@ export async function GET() {
       throw new Error(`Google API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: GoogleApiResponse = await response.json();
     
     if (data.error_message) {
       throw new Error(data.error_message);
     }
 
     const filteredReviews = data.result?.reviews?.filter(
-      (review: any) => review.text && review.text.length > 10
+      (review: GoogleReview) => review.text && review.text.length > 10
     ) || [];
 
     return NextResponse.json({
