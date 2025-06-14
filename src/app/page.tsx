@@ -576,31 +576,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Special Notes */}
-          <div className="bg-gray-50 rounded-lg p-8 mb-12">
-            <h3 className={`${playfair.className} text-2xl font-bold text-center text-black mb-6`}>
-              Please Note
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 text-gray-700">
-              <div>
-                <h4 className="font-semibold mb-2 text-black">🤧 Allergy Warnings</h4>
-                <p>Some of our dishes contain dairy, nuts, eggs and other allergens. If you have any food allergies, please be sure to inform us before placing your order. We will do our best to accommodate to your needs.</p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2 text-black">🌶️ Spice Levels</h4>
-                <p>All spicy dishes can be adjusted to your preference. Please inform our staff of your spice tolerance.</p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2 text-black">🥬 Dietary Requirements</h4>
-                <p>We can accommodate vegetarian, vegan, and gluten-free requests. Please speak with our staff.</p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2 text-black">👨‍🍳 Fresh Preparation</h4>
-                <p>All our dishes are made fresh to order. Hand-pulled noodles may take extra time but are worth the wait!</p>
-              </div>
-            </div>
-          </div>
-
           {/* Call to Action */}
           <div className="relative py-16 px-4 text-center min-h-[300px] flex items-center justify-center">
             <div className="absolute inset-0 z-0 overflow-hidden">
@@ -631,11 +606,36 @@ export default function Home() {
                   Contact Us
                 </button>
                 <a
-                  href="tel:+442076369949"
+                  href="/booking"
                   className="border-2 border-red-600 bg-red-600/90 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors duration-300 shadow-xl text-lg"
                 >
-                  Call Now
+                  Book a Table
                 </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Special Notes */}
+          <div className="bg-gray-50 rounded-lg p-8 mb-12">
+            <h3 className={`${playfair.className} text-2xl font-bold text-center text-black mb-6`}>
+              Please Note
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 text-gray-700">
+              <div>
+                <h4 className="font-semibold mb-2 text-black">🤧 Allergy Warnings</h4>
+                <p>Some of our dishes contain dairy, nuts, eggs and other allergens. If you have any food allergies, please be sure to inform us before placing your order. We will do our best to accommodate to your needs.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2 text-black">🌶️ Spice Levels</h4>
+                <p>All spicy dishes can be adjusted to your preference. Please inform our staff of your spice tolerance.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2 text-black">🥬 Dietary Requirements</h4>
+                <p>We can accommodate vegetarian, vegan, and gluten-free requests. Please speak with our staff.</p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2 text-black">👨‍🍳 Fresh Preparation</h4>
+                <p>All our dishes are made fresh to order. Hand-pulled noodles may take extra time but are worth the wait!</p>
               </div>
             </div>
           </div>
