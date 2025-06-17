@@ -43,7 +43,7 @@ export default function Home() {
       {
         name: "Samsa",
         description: "Flaky meat pie filled with seasoned minced lamb and onions, baked to perfection",
-        price: "£3.50",
+        price: "£3.95",
         spicy: false,
         popular: true
       },
@@ -72,6 +72,13 @@ export default function Home() {
         name: "Pak Choy Salad",
         description: "Fresh pak choy leaves, sesame oil, soy sauce, garlic dressing and a touch of vinegar for a tangy kick",
         price: "£5.95",
+        spicy: false,
+        popular: false
+      },
+      {
+        name: "Chicken Wings",
+        description: "Grilled, smoky chicken wings marinated in Uyghur spices",
+        price: "£3.95",
         spicy: false,
         popular: false
       }
@@ -127,10 +134,10 @@ export default function Home() {
         popular: false
       },
       {
-        name: "Qerin",
-        description: "Stir fried tripe with spices and bell peppers, served with white rice",
-        price: "£14.95",
-        spicy: false,
+        name: "Lazaji",
+        description: "Spicy, battered shrimp and crispy fries, seasoned lightly for a savoury taste",
+        price: "£19.99",
+        spicy: true,
         popular: false
       },
       {
@@ -164,7 +171,7 @@ export default function Home() {
       {
         name: "Tugre",
         description: "Boiled dumplings filled with minced lamb, onions and herbs, served with a spicy chilli sauce",
-        price: "£15.95",
+        price: "£14.95",
         spicy: false,
         popular: false
       },
@@ -185,30 +192,9 @@ export default function Home() {
         popular: true
       },
       {
-        name: "Borek Kawap",
-        description: "Lamb kidney BBQ skewers, marinated with traditional spices and grilled to perfection",
-        price: "£3.95",
-        spicy: true,
-        popular: false
-      },
-      {
-        name: "Ugre",
-        description: "Uyghur style handmade noodle soup with beef and fresh herbs",
-        price: "£9.95",
-        spicy: false,
-        popular: true
-      },
-      {
         name: "Chochure",
         description: "Minced lamb ravioli, served with a rich lamb bone broth",
-        price: "£3.50",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Lentil Soup",
-        description: "Homemade red lentil served with garlic bread",
-        price: "£2.50",
+        price: "£10.95",
         spicy: false,
         popular: false
       }
@@ -222,13 +208,6 @@ export default function Home() {
         popular: true
       },
       {
-        name: "Milk tea",
-        description: "Salty milk tea, a staple in Uyghur breakfast culture",
-        price: "£6.50",
-        spicy: false,
-        popular: false
-      },
-      {
         name: "Honey Cake",
         description: "Light and fluffy homemade honey cake",
         price: "£5.95",
@@ -236,16 +215,16 @@ export default function Home() {
         popular: true
       },
       {
-        name: "Rice Pudding",
-        description: "Creamy homemade rice pudding with a hint of cinnamon for a comforting finish",
-        price: "£3.95",
+        name: "Baklava",
+        description: "Turkish pistachio baklava, a sweet pastry made of layers of filo filled with chopped nuts and sweetened with honey",
+        price: "£5.95",
         spicy: false,
         popular: false
       },
       {
-        name: "Baklava",
-        description: "Turkish pistachio baklava, a sweet pastry made of layers of filo filled with chopped nuts and sweetened with honey",
-        price: "£5.95",
+        name: "Rice Pudding",
+        description: "Creamy homemade rice pudding with a hint of cinnamon for a comforting finish",
+        price: "£3.95",
         spicy: false,
         popular: false
       }
