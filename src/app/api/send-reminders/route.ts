@@ -11,7 +11,6 @@ interface Booking {
   party_size: number;
   phone_number?: string;
   special_requests?: string;
-  // Add any other properties your booking objects have
 }
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -61,7 +60,7 @@ export async function POST() {
     for (const booking of bookings) {
       try {
         const emailResult = await resend.emails.send({
-          from: 'Turpan Restaurant <noreply@yourdomain.com>', // Update with new domain
+          from: 'Turpan Restaurant <booking@turpanuyghur.com>', 
           to: booking.email,
           subject: `Reminder: Your reservation tomorrow at Turpan Restaurant`,
           html: generateReminderEmailHTML(booking),
@@ -185,14 +184,14 @@ function generateReminderEmailHTML(booking: Booking) {
         <p>We're excited to welcome you and serve you our authentic Uyghur cuisine! If you need to make any changes to your reservation or have any questions, please don't hesitate to contact us.</p>
         
         <div style="text-align: center;">
-          <a href="tel:+44XXXXXXXXXX" class="button">Call Restaurant</a>
+          <a href="tel:+442076369949" class="button">Call Restaurant</a>
         </div>
         
         <div class="footer">
           <p><strong>Turpan Restaurant</strong><br>
           📍 108 Great Russell St, London WC1B 3NA<br>
           📞 020 7636 9949<br>
-          🌐 www.turpanrestaurant.co.uk</p>
+          🌐 www.turpanuyghur.com</p>
           
           <p><em>Experience the authentic taste of Uyghur cuisine in the heart of London</em></p>
         </div>
