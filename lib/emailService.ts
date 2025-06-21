@@ -113,7 +113,7 @@ const getCustomerEmailTemplate = (booking: BookingDetails): string => {
       </div>
       
       <div class="footer">
-        <p>📧 Email: info@turpanrestaurant.com | 📞 Phone: (020) 7636 9949</p>
+        <p>📧 Email: booking@turpanuyghur.com | 📞 Phone: (020) 7636 9949</p>
         <p>📍 108 Great Russell St, London WC1B 3NA </p>
         <p style="font-size: 12px; margin-top: 15px;">
           This is an automated confirmation email. Please do not reply directly to this message.
@@ -283,7 +283,7 @@ const getReminderEmailTemplate = (booking: BookingDetails): string => {
       </div>
       
       <div class="footer">
-        <p>📧 Email: info@turpanrestaurant.com | 📞 Phone: (020) 7636 9949</p>
+        <p>📧 Email: booking@turpanuyghur.com | 📞 Phone: (020) 7636 9949</p>
         <p>📍 108 Great Russell St, London WC1B 3NA </p>
         <p style="font-size: 12px; margin-top: 15px;">
           This is an automated reminder email. Please do not reply directly to this message.
