@@ -297,7 +297,7 @@ const getReminderEmailTemplate = (booking: BookingDetails): string => {
 export const sendCustomerConfirmation = async (booking: BookingDetails): Promise<{ success: boolean; error?: string }> => {
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Turpan Restaurant <onboarding@resend.dev>',
+      from: 'Turpan Restaurant <booking@turpanuyghur.com>',
       to: [booking.email],
       subject: `Booking Confirmation - ${formatDate(booking.date)} at ${formatTime(booking.time)}`,
       html: getCustomerEmailTemplate(booking),
@@ -325,7 +325,7 @@ export const sendRestaurantNotification = async (booking: BookingDetails): Promi
     }
 
     const { data, error } = await resend.emails.send({
-      from: 'Turpan Restaurant Bookings <onboarding@resend.dev>', 
+      from: 'Turpan Restaurant Bookings <booking@turpanuyghur.com>', 
       to: [restaurantEmail],
       subject: `🔔 New Booking: ${booking.name} - ${formatDate(booking.date)} ${formatTime(booking.time)}`,
       html: getRestaurantEmailTemplate(booking),
@@ -347,7 +347,7 @@ export const sendRestaurantNotification = async (booking: BookingDetails): Promi
 export const sendReminderEmail = async (booking: BookingDetails): Promise<{ success: boolean; error?: string }> => {
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Restaurant <onboarding@resend.dev>',
+      from: 'Restaurant <booking@turpanuyghur.com>',
       to: [booking.email],
       subject: `⏰ Reminder: Your table tomorrow at ${formatTime(booking.time)}`,
       html: getReminderEmailTemplate(booking),
