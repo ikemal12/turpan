@@ -60,7 +60,7 @@ const getCustomerEmailTemplate = (booking: BookingDetails): string => {
       <div class="content">
         <p>Dear ${booking.name},</p>
         
-        <p>Thank you for choosing our restaurant! We're delighted to confirm your reservation.</p>
+        <p>Thank you for choosing Turpan! We're delighted to confirm your reservation.</p>
         
         <div class="booking-details">
           <h3 style="margin-top: 0; color: #2c3e50;">Reservation Details</h3>
@@ -100,13 +100,13 @@ const getCustomerEmailTemplate = (booking: BookingDetails): string => {
           <h4 style="margin-top: 0; color: #2c3e50;">Important Information</h4>
           <ul style="margin: 10px 0; padding-left: 20px;">
             <li>Please arrive on time - we hold tables for 15 minutes past your reservation time</li>
-            <li>If you need to cancel or modify your booking, please call us at least 2 hours in advance</li>
+            <li>If you need to cancel or modify your booking, please call us in advance</li>
             <li>Please speak with our staff if you have any dietary requirements or allergies</li>
             <li>We look forward to serving you!</li>
           </ul>
         </div>
         
-        <p style="margin-top: 25px;">We can't wait to welcome you to our restaurant. If you have any questions or special dietary requirements, please don't hesitate to contact us.</p>
+        <p style="margin-top: 25px;">We can't wait to welcome you to Turpan. If you have any questions or special dietary requirements, please don't hesitate to contact us.</p>
         
         <p>See you soon!</p>
         <p><strong>Turpan Restaurant Team</strong></p>
@@ -117,6 +117,7 @@ const getCustomerEmailTemplate = (booking: BookingDetails): string => {
         <p>📍 108 Great Russell St, London WC1B 3NA </p>
         <p style="font-size: 12px; margin-top: 15px;">
           This is an automated confirmation email. Please do not reply directly to this message.
+          For any inquiries, contact us at info@turpanuyghur.com.
         </p>
       </div>
     </body>
@@ -245,7 +246,7 @@ const getReminderEmailTemplate = (booking: BookingDetails): string => {
           <p><strong>🍽️ Don't forget about your reservation tomorrow!</strong></p>
         </div>
         
-        <p>This is a friendly reminder about your upcoming table reservation at our restaurant.</p>
+        <p>This is a friendly reminder about your upcoming table reservation at Turpan.</p>
         
         <div class="booking-details">
           <h3 style="margin-top: 0; color: #2c3e50;">Your Reservation Details</h3>
@@ -287,6 +288,7 @@ const getReminderEmailTemplate = (booking: BookingDetails): string => {
         <p>📍 108 Great Russell St, London WC1B 3NA </p>
         <p style="font-size: 12px; margin-top: 15px;">
           This is an automated reminder email. Please do not reply directly to this message.
+          For any inquiries, contact us at info@turpanuyghur.com.
         </p>
       </div>
     </body>

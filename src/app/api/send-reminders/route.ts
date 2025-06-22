@@ -26,10 +26,6 @@ export async function GET() {
     
     console.log('Looking for bookings on:', targetDateStr);
 
-    // Query bookings that:
-    // 1. Are scheduled for tomorrow (24 hours from now)
-    // 2. Haven't had reminder emails sent yet
-    // 3. Are confirmed/active
     const { data: bookings, error: queryError } = await supabaseAdmin
       .from('Reservations')
       .select('*')

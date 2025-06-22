@@ -652,7 +652,7 @@ export default function Home() {
               </div>
               <div>
                 <p className="mb-2"><strong>Phone:</strong> <a href="tel:+442076369949" className="text-red-600 hover:underline">020 7636 9949</a></p>
-                <p className="mb-2"><strong>Email:</strong> <a href="mailto:booking@turpanuyghur.com" className="text-red-600 hover:underline">booking@turpanuyghur.com</a></p>
+                <p className="mb-2"><strong>Email:</strong> <a href="mailto:info@turpanuyghur.com" className="text-red-600 hover:underline">info@turpanuyghur.com</a></p>
                 <p className="mb-2">
                   <strong>Instagram:</strong> 
                   <a href="https://instagram.com/turpanuyghur" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline ml-1">
