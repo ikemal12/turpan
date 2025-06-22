@@ -85,7 +85,6 @@ const validatePartySize = (partySize: number): { isValid: boolean; error?: strin
 
 const checkForDoubleBooking = async (email: string, phone: string, date: string, time: string) => {
   try {
-    // Check for existing booking with same email/phone on same date and time
     const { data: existingBookings, error } = await supabaseAdmin
       .from('Reservations')
       .select('*')
@@ -124,7 +123,6 @@ export async function POST(request: NextRequest) {
 
     const { name, email, phone, partySize, date, time } = body;
 
-    // Check for missing fields
     if (!name || !email || !phone || !partySize || !date || !time) {
       console.log('Missing fields:', { name: !!name, email: !!email, phone: !!phone, partySize: !!partySize, date: !!date, time: !!time });
       return NextResponse.json({ 

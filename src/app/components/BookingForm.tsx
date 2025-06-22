@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Calendar, Clock, Users, Phone, Mail, User, CheckCircle, AlertCircle } from 'lucide-react'
+import { Calendar, Clock, Users, Phone, Mail, User, CheckCircle, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function BookingForm() {
   const [form, setForm] = useState({
@@ -16,6 +16,8 @@ export default function BookingForm() {
   const [availableDates, setAvailableDates] = useState<string[]>([])
   const [timeSlots, setTimeSlots] = useState<string[]>([])
   const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(null)
+  const [dateStartIndex, setDateStartIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const dates: string[] = []
@@ -44,13 +46,24 @@ export default function BookingForm() {
     setTimeSlots(slots)
   }, [])
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleDateSelect = (date: string, index: number) => {
+  const handleDateSelect = (date: string, visibleIndex: number) => {
     setForm({ ...form, date, time: '' })
-    setSelectedDateIndex(index)
+    setSelectedDateIndex(dateStartIndex + visibleIndex)
   }
 
   const handleTimeSelect = (time: string) => {
@@ -125,8 +138,20 @@ export default function BookingForm() {
     return timeSlot <= currentTimeWithBuffer
   }
 
-  const getNextSevenDates = () => {
-    return availableDates.slice(0, 7)
+  const getVisibleDates = () => {
+    const count = isMobile ? 3 : 7
+    return availableDates.slice(dateStartIndex, dateStartIndex + count)
+  }
+
+  const navigateDates = (direction: 'prev' | 'next') => {
+    const count = isMobile ? 3 : 7
+    const maxIndex = Math.max(0, availableDates.length - count)
+    
+    if (direction === 'prev') {
+      setDateStartIndex(Math.max(0, dateStartIndex - count))
+    } else {
+      setDateStartIndex(Math.min(maxIndex, dateStartIndex + count))
+    }
   }
 
   return (
@@ -208,17 +233,77 @@ export default function BookingForm() {
             Select Date
           </h3>
           
-          <div className="grid grid-cols-7 gap-2">
-            {getNextSevenDates().map((date, index) => {
+          {/* Mobile: Navigation with 3 wider boxes */}
+          <div className="md:hidden">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => navigateDates('prev')}
+                disabled={dateStartIndex === 0}
+                className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              
+              <div className="flex-1 grid grid-cols-3 gap-3">
+                {getVisibleDates().map((date, visibleIndex) => {
+                  const dateInfo = formatDateDisplay(date)
+                  const actualIndex = dateStartIndex + visibleIndex
+                  const isSelected = selectedDateIndex === actualIndex
+                  const isToday = actualIndex === 0
+                  
+                  return (
+                    <button
+                      key={date}
+                      type="button"
+                      onClick={() => handleDateSelect(date, visibleIndex)}
+                      className={`p-4 rounded-lg border-2 transition-all text-center ${
+                        isSelected 
+                          ? 'bg-orange-500 border-orange-500 text-white shadow-lg' 
+                          : 'bg-white border-gray-200 hover:border-orange-300 hover:bg-orange-50'
+                      }`}
+                    >
+                      <div className="text-xs font-medium text-gray-600">{dateInfo.weekday}</div>
+                      <div className={`text-lg font-bold ${isSelected ? 'text-white' : 'text-gray-800'}`}>
+                        {dateInfo.day}
+                      </div>
+                      <div className={`text-xs ${isSelected ? 'text-orange-100' : 'text-gray-500'}`}>
+                        {dateInfo.month}
+                      </div>
+                      {isToday && (
+                        <div className={`text-xs mt-1 ${isSelected ? 'text-orange-100' : 'text-orange-500'}`}>
+                          Today
+                        </div>
+                      )}
+                    </button>
+                  )
+                })}
+              </div>
+              
+              <button
+                type="button"
+                onClick={() => navigateDates('next')}
+                disabled={dateStartIndex + (isMobile ? 3 : 7) >= availableDates.length}
+                className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop: Original 7-column layout */}
+          <div className="hidden md:grid grid-cols-7 gap-2">
+            {getVisibleDates().map((date, visibleIndex) => {
               const dateInfo = formatDateDisplay(date)
-              const isSelected = selectedDateIndex === index
-              const isToday = index === 0
+              const actualIndex = dateStartIndex + visibleIndex
+              const isSelected = selectedDateIndex === actualIndex
+              const isToday = actualIndex === 0
               
               return (
                 <button
                   key={date}
                   type="button"
-                  onClick={() => handleDateSelect(date, index)}
+                  onClick={() => handleDateSelect(date, visibleIndex)}
                   className={`p-3 rounded-lg border-2 transition-all text-center ${
                     isSelected 
                       ? 'bg-orange-500 border-orange-500 text-white shadow-lg' 
