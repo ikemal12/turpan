@@ -419,7 +419,7 @@ export default function Home() {
             <h2 className={`${playfair.className} text-4xl font-bold text-center mb-12 text-black`}>What Our Customers Say</h2>
 
             {/* Trust Badges - Platform Ratings */}
-            <div className="flex justify-center gap-8 mb-12">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-12">
               <div className="flex items-center space-x-2">
                 <Image
                   src="/google-logo.svg" 

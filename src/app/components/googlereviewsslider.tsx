@@ -68,24 +68,24 @@ export default function GoogleReviewsSlider({ reviews }: GoogleReviewsSliderProp
     <div className="w-full max-w-4xl mx-auto relative">
       {/* Main slideshow */}
       <div 
-        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 to-white shadow-xl border border-gray-100"
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 to-white shadow-xl border border-gray-100 min-h-[250px] md:min-h-[300px]"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
         <div 
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-500 ease-in-out h-full"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {reviews.map((review, idx) => (
-            <div key={idx} className="w-full flex-shrink-0 p-8 md:p-12">
-              <div className="text-center max-w-3xl mx-auto">
+            <div key={idx} className="w-full flex-shrink-0 p-4 md:p-8 lg:p-12 flex items-center justify-center min-h-[250px] md:min-h-[300px]">
+              <div className="text-center max-w-3xl mx-auto flex flex-col justify-center h-full"> 
                 {/* Quote icon */}
                 <div className="mb-6">
                   <Quote className="w-8 h-8 text-orange-400 mx-auto opacity-60" />
                 </div>
 
                 {/* Review text */}
-                <blockquote className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8 italic">
+                <blockquote className="text-gray-700 text-base md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8 italic flex-grow flex items-center justify-center">
                   &apos;{review.text}&apos;
                 </blockquote>
 
