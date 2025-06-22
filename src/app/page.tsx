@@ -247,13 +247,16 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <div className="w-full overflow-x-hidden">
       {/* Fixed Navbar */}
-      <nav className="fixed top-0 w-full bg-white bg-opacity-95 text-black flex justify-center space-x-8 py-4 text-lg font-medium shadow-md z-50 backdrop-blur-sm">
-        <button onClick={() => scrollToSection('home')} className="hover:underline">Home</button>
-        <button onClick={() => scrollToSection('about')} className="hover:underline">About</button>
-        <button onClick={() => scrollToSection('reviews')} className="hover:underline">Reviews</button>
-        <button onClick={() => scrollToSection('menu')} className="hover:underline">Menu</button>
-        <button onClick={() => scrollToSection('contact')} className="hover:underline">Contact</button>
+      <nav className="fixed top-0 w-full bg-white bg-opacity-95 text-black flex justify-center py-4 text-lg font-medium shadow-md z-50 backdrop-blur-sm px-4">
+        <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 max-w-full">
+          <button onClick={() => scrollToSection('home')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Home</button>
+          <button onClick={() => scrollToSection('about')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">About</button>
+          <button onClick={() => scrollToSection('reviews')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Reviews</button>
+          <button onClick={() => scrollToSection('menu')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Menu</button>
+          <button onClick={() => scrollToSection('contact')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Contact</button>
+        </div>
       </nav>
 
       {/* HOME SECTION - Landing */}
@@ -262,13 +265,13 @@ export default function Home() {
         className="relative flex flex-col items-center justify-center text-center text-black p-8 min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/uyghur-cuisine.jpg')" }}
       >
-        <h1 className={`${playfair.className} text-white text-6xl md:text-7xl font-bold mb-8 drop-shadow-xl`}>Journey Through Taste</h1>
+        <h1 className={`${playfair.className} text-white text-4xl sm:text-5xl md:text-7xl font-bold mb-8 drop-shadow-xl px-4 text-center`}>Journey Through Taste</h1>
         
         {/* Book a Table Button */}
-        <div className="mt-8">
+        <div className="mt-8 px-4">
           <a
             href="/booking"
-            className="inline-block bg-red-600 text-white px-12 py-4 rounded-lg font-bold text-xl hover:bg-red-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 border-2 border-red-600 hover:border-red-700"
+            className="inline-block bg-red-600 text-white px-6 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-lg sm:text-xl hover:bg-red-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 border-2 border-red-600 hover:border-red-700"
           >
             Book a Table
           </a>
@@ -280,14 +283,14 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           {/* Hero Part */}
           <div className="text-center mb-16">
-            <h1 className={`${playfair.className} text-5xl md:text-6xl font-bold mb-6 text-black`}>Our Story</h1>
-            <p className="text-xl max-w-2xl mx-auto text-gray-700">Authentic Uyghur cuisine bringing the flavors of Central Asia to London</p>
+            <h1 className={`${playfair.className} text-3xl sm:text-5xl md:text-6xl font-bold mb-6 text-black text-center`}>Our Story</h1>
+            <p className="text-lg sm:text-xl max-w-2xl mx-auto text-gray-700 px-4">Authentic Uyghur cuisine bringing the flavors of Central Asia to London</p>
           </div>
 
           {/* Story Section */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
             <div>
-              <h2 className={`${playfair.className} text-4xl font-bold text-black mb-6`}>A Family Tradition</h2>
+              <h2 className={`${playfair.className} text-2xl sm:text-4xl font-bold text-black mb-6`}>A Family Tradition</h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
                   Welcome to Turpan Restaurant, where we bring the rich culinary heritage of the Uyghur people 
@@ -480,32 +483,33 @@ export default function Home() {
       <section id="menu" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className={`${playfair.className} text-5xl md:text-6xl font-bold mb-4 text-black`}>Our Menu</h1>
+            <h1 className={`${playfair.className} text-3xl sm:text-5xl md:text-6xl font-bold mb-4 text-black`}>Our Menu</h1>
             <p className="text-xl text-gray-700">Authentic flavors from the ancient Silk Road</p>
           </div>
           
           {/* Tab Navigation */}
-          <div className="flex justify-center mb-12">
-            <div className="flex bg-gray-100 rounded-lg p-1 shadow-lg">
+          <div className="flex justify-center mb-12 px-4">
+            <div className="flex flex-wrap bg-gray-100 rounded-lg p-1 shadow-lg justify-center gap-1">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 flex items-center space-x-2 ${
+                  className={`px-3 sm:px-6 py-2 sm:py-3 rounded-md font-semibold transition-all duration-300 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base ${
                     activeTab === tab.id
                       ? 'bg-white text-black shadow-md'
                       : 'text-gray-600 hover:text-black'
                   }`}
                 >
-                  <span className="text-xl">{tab.icon}</span>
-                  <span>{tab.name}</span>
+                  <span className="text-lg sm:text-xl">{tab.icon}</span>
+                  <span className="hidden sm:inline">{tab.name}</span>
+                  <span className="sm:hidden">{tab.name.split(' ')[0]}</span>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Menu Items */}
-          <div className="grid gap-6 md:grid-cols-2 mb-16">
+          <div className="grid gap-6 lg:grid-cols-2 mb-16">
             {menuItems[activeTab as keyof typeof menuItems].map((item, index) => (
               <div
                 key={index}
@@ -572,22 +576,22 @@ export default function Home() {
             </div>
             
             <div className="relative z-20 max-w-2xl mx-auto">
-              <h3 className={`${playfair.className} text-4xl font-bold text-white mb-4 drop-shadow-lg`}>
+              <h3 className={`${playfair.className} text-2xl sm:text-4xl font-bold text-white mb-4 drop-shadow-lg px-4 text-center`}>
                 Ready to Order?
               </h3>
               <p className="text-white mb-6 text-xl font-medium drop-shadow-lg">
                 Visit us today or call to make a reservation
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-xl text-lg"
+                  className="bg-red-600 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-xl text-lg"
                 >
                   Contact Us
                 </button>
                 <a
                   href="/booking"
-                  className="border-2 border-red-600 bg-red-600/90 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors duration-300 shadow-xl text-lg"
+                  className="border-2 border-red-600 bg-red-600/90 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors duration-300 shadow-xl text-lg text-center"
                 >
                   Book a Table
                 </a>
@@ -629,15 +633,15 @@ export default function Home() {
         style={{ backgroundImage: "url('/interior1.jpg')" }}
       >
         <div className="relative max-w-4xl mx-auto text-center z-10">
-          <h2 className={`${playfair.className} text-4xl font-bold text-white mb-8 drop-shadow-md`}>Visit Us</h2>
-          <p className="text-xl text-white mb-8 drop-shadow-md">
+          <h2 className={`${playfair.className} text-2xl sm:text-4xl font-bold text-white mb-8 drop-shadow-md text-center px-4`}>Visit Us</h2>
+          <p className="text-lg sm:text-xl text-white mb-8 drop-shadow-md px-4">
             Located in the heart of London, we welcome you to experience the warmth of Uyghur hospitality 
             and the authentic flavors of Central Asia.
           </p>
           
           <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
             <h3 className="text-2xl font-semibold mb-6 text-gray-800">Opening Hours & Contact</h3>
-            <div className="grid md:grid-cols-2 gap-6 text-gray-700 text-lg">
+            <div className="grid sm:grid-cols-2 gap-6 text-gray-700 text-base sm:text-lg">
               <div>
                 <p className="mb-2"><strong>Everyday:</strong> 12:00 PM - 9:00 PM</p>
                 <p className="mb-2"><strong>Address:</strong> 108 Great Russell St, London WC1B 3NA</p>
@@ -672,6 +676,7 @@ export default function Home() {
           <a href="tel:+442076369949" className="hover:underline text-red-600">Call us: 020 7636 9949</a>
         </p>
       </footer>
+      </div>
     </div>
   );
 }
