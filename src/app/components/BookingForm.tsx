@@ -291,40 +291,62 @@ export default function BookingForm() {
             </div>
           </div>
 
-          {/* Desktop: Original 7-column layout */}
-          <div className="hidden md:grid grid-cols-7 gap-2">
-            {getVisibleDates().map((date, visibleIndex) => {
-              const dateInfo = formatDateDisplay(date)
-              const actualIndex = dateStartIndex + visibleIndex
-              const isSelected = selectedDateIndex === actualIndex
-              const isToday = actualIndex === 0
+          {/* Desktop: Navigation with 7 boxes */}
+          <div className="hidden md:block">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => navigateDates('prev')}
+                disabled={dateStartIndex === 0}
+                className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
               
-              return (
-                <button
-                  key={date}
-                  type="button"
-                  onClick={() => handleDateSelect(date, visibleIndex)}
-                  className={`p-3 rounded-lg border-2 transition-all text-center ${
-                    isSelected 
-                      ? 'bg-orange-500 border-orange-500 text-white shadow-lg' 
-                      : 'bg-white border-gray-200 hover:border-orange-300 hover:bg-orange-50'
-                  }`}
-                >
-                  <div className="text-xs font-medium text-gray-600">{dateInfo.weekday}</div>
-                  <div className={`text-lg font-bold ${isSelected ? 'text-white' : 'text-gray-800'}`}>
-                    {dateInfo.day}
-                  </div>
-                  <div className={`text-xs ${isSelected ? 'text-orange-100' : 'text-gray-500'}`}>
-                    {dateInfo.month}
-                  </div>
-                  {isToday && (
-                    <div className={`text-xs mt-1 ${isSelected ? 'text-orange-100' : 'text-orange-500'}`}>
-                      Today
-                    </div>
-                  )}
-                </button>
-              )
-            })}
+              <div className="flex-1 grid grid-cols-7 gap-2">
+                {getVisibleDates().map((date, visibleIndex) => {
+                  const dateInfo = formatDateDisplay(date)
+                  const actualIndex = dateStartIndex + visibleIndex
+                  const isSelected = selectedDateIndex === actualIndex
+                  const isToday = actualIndex === 0
+                  
+                  return (
+                    <button
+                      key={date}
+                      type="button"
+                      onClick={() => handleDateSelect(date, visibleIndex)}
+                      className={`p-3 rounded-lg border-2 transition-all text-center ${
+                        isSelected 
+                          ? 'bg-orange-500 border-orange-500 text-white shadow-lg' 
+                          : 'bg-white border-gray-200 hover:border-orange-300 hover:bg-orange-50'
+                      }`}
+                    >
+                      <div className="text-xs font-medium text-gray-600">{dateInfo.weekday}</div>
+                      <div className={`text-lg font-bold ${isSelected ? 'text-white' : 'text-gray-800'}`}>
+                        {dateInfo.day}
+                      </div>
+                      <div className={`text-xs ${isSelected ? 'text-orange-100' : 'text-gray-500'}`}>
+                        {dateInfo.month}
+                      </div>
+                      {isToday && (
+                        <div className={`text-xs mt-1 ${isSelected ? 'text-orange-100' : 'text-orange-500'}`}>
+                          Today
+                        </div>
+                      )}
+                    </button>
+                  )
+                })}
+              </div>
+              
+              <button
+                type="button"
+                onClick={() => navigateDates('next')}
+                disabled={dateStartIndex + (isMobile ? 3 : 7) >= availableDates.length}
+                className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 
