@@ -263,7 +263,7 @@ export default function Home() {
       <section
         id="home"
         className="relative flex flex-col items-center justify-center text-center text-black p-8 min-h-screen bg-cover bg-center"
-        style={{ backgroundImage: "url('/uyghur-cuisine.jpg')" }}
+        style={{ backgroundImage: "url('/landingpage.jpg')" }}
       >
         <h1 className={`${playfair.className} text-white text-4xl sm:text-5xl md:text-7xl font-bold mb-8 drop-shadow-xl px-4 text-center`}>Journey Through Taste</h1>
         
