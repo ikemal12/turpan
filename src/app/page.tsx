@@ -8,6 +8,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 import { Star, Users, Globe } from 'lucide-react'
 
+const useScrollAnimation = () => {
+  const [visibleSections, setVisibleSections] = useState(new Set());
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleSections(prev => new Set([...prev, entry.target.id]));
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    const sections = document.querySelectorAll('[data-animate]');
+    sections.forEach(section => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return visibleSections;
+};
+
 const playfair = Playfair_Display({
   subsets: ['latin'],
   weight: '700', 
@@ -24,6 +48,7 @@ interface GoogleReview {
 export default function Home() {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [activeTab, setActiveTab] = useState('starters');
+  const visibleSections = useScrollAnimation();
 
   useEffect(() => {
     const getReviews = async () => {
@@ -239,10 +264,11 @@ export default function Home() {
         className="relative flex flex-col items-center justify-center text-center text-black p-8 min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/landingpage.jpg')" }}
       >
-        <h1 className={`${playfair.className} text-white text-4xl sm:text-5xl md:text-7xl font-bold mb-8 drop-shadow-xl px-4 text-center`}>Journey Through Taste</h1>
-        
-        {/* Book a Table Button */}
-        <div className="mt-8 px-4">
+        <h1 className={`${playfair.className} text-white text-4xl sm:text-5xl md:text-7xl font-bold mb-8 drop-shadow-xl px-4 text-center animate-fade-in-up`}>
+          Journey Through Taste
+        </h1>
+
+        <div className="mt-8 px-4 animate-fade-in-up stagger-delay-2">
           <a
             href="/booking"
             className="inline-block bg-red-600 text-white px-6 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-lg sm:text-xl hover:bg-red-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 border-2 border-red-600 hover:border-red-700"
@@ -256,14 +282,22 @@ export default function Home() {
       <section id="about" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           {/* Hero Part */}
-          <div className="text-center mb-16">
+          <div 
+            className={`text-center mb-16 fade-in-up ${visibleSections.has('about-hero') ? 'visible' : ''}`}
+            data-animate
+            id="about-hero"
+          >
             <h1 className={`${playfair.className} text-3xl sm:text-5xl md:text-6xl font-bold mb-6 text-black text-center`}>Our Story</h1>
             <p className="text-lg sm:text-xl max-w-2xl mx-auto text-gray-700 px-4">Authentic Uyghur cuisine bringing the flavors of Central Asia to London</p>
           </div>
 
           {/* Story Section */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-            <div>
+            <div 
+              className={`fade-in-left ${visibleSections.has('about-story') ? 'visible' : ''}`}
+              data-animate
+              id="about-story"
+            >
               <h2 className={`${playfair.className} text-2xl sm:text-4xl font-bold text-black mb-6`}>A Family Tradition</h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
@@ -282,7 +316,11 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="relative">
+            <div 
+              className={`relative fade-in-right ${visibleSections.has('about-image') ? 'visible' : ''}`}
+              data-animate
+              id="about-image"
+            >
               <Image
                 src="/uyghur-family.jpg"
                 alt="The Turpan Restaurant family"
@@ -390,10 +428,20 @@ export default function Home() {
       {/* REVIEWS SECTION */}
         <section id="reviews" className="py-20 px-4 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className={`${playfair.className} text-4xl font-bold text-center mb-12 text-black`}>What Our Customers Say</h2>
+            <h2 
+              className={`${playfair.className} text-4xl font-bold text-center mb-12 text-black fade-in-up ${visibleSections.has('reviews-header') ? 'visible' : ''}`}
+              data-animate
+              id="reviews-header"
+            >
+              What Our Customers Say
+            </h2>
 
             {/* Trust Badges - Platform Ratings */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-12">
+            <div 
+              className={`flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-12 fade-in-up stagger-delay-1 ${visibleSections.has('reviews-badges') ? 'visible' : ''}`}
+              data-animate
+              id="reviews-badges"
+            >
               <div className="flex items-center space-x-2">
                 <Image
                   src="/google-logo.svg" 
@@ -456,13 +504,21 @@ export default function Home() {
       {/* MENU SECTION */}
       <section id="menu" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div 
+            className={`text-center mb-16 fade-in-up ${visibleSections.has('menu-header') ? 'visible' : ''}`}
+            data-animate
+            id="menu-header"
+          >
             <h1 className={`${playfair.className} text-3xl sm:text-5xl md:text-6xl font-bold mb-4 text-black`}>Our Menu</h1>
             <p className="text-xl text-gray-700">Authentic flavors from the ancient Silk Road</p>
           </div>
           
           {/* Tab Navigation */}
-          <div className="flex justify-center mb-12 px-4">
+          <div 
+            className={`flex justify-center mb-12 px-4 fade-in-up stagger-delay-1 ${visibleSections.has('menu-tabs') ? 'visible' : ''}`}
+            data-animate
+            id="menu-tabs"
+          >
             <div className="flex flex-wrap bg-gray-100 rounded-lg p-1 shadow-lg justify-center gap-1">
               {tabs.map((tab) => (
                 <button
@@ -483,7 +539,11 @@ export default function Home() {
           </div>
 
           {/* Menu Items */}
-          <div className="grid gap-6 lg:grid-cols-2 mb-16">
+          <div 
+            className={`grid gap-6 lg:grid-cols-2 mb-16 fade-in-up stagger-delay-2 ${visibleSections.has('menu-items') ? 'visible' : ''}`}
+            data-animate
+            id="menu-items"
+          >
             {menuItems[activeTab as keyof typeof menuItems].map((item, index) => (
               <div
                 key={index}
@@ -603,7 +663,11 @@ export default function Home() {
         className="relative py-20 px-4 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/interior1.jpg')" }}
       >
-        <div className="relative max-w-4xl mx-auto text-center z-10">
+        <div 
+          className={`relative max-w-4xl mx-auto text-center z-10 fade-in-up ${visibleSections.has('contact-content') ? 'visible' : ''}`}
+          data-animate
+          id="contact-content"
+        >
           <h2 className={`${playfair.className} text-2xl sm:text-4xl font-bold text-white mb-8 drop-shadow-md text-center px-4`}>Visit Us</h2>
           <p className="text-lg sm:text-xl text-white mb-8 drop-shadow-md px-4">
             Located in the heart of London, we welcome you to experience the warmth of Uyghur hospitality 
