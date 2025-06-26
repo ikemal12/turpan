@@ -43,42 +43,36 @@ export default function Home() {
       {
         name: "Samsa",
         description: "Flaky meat pie filled with seasoned minced lamb and onions, baked to perfection",
-        price: "£3.95",
         spicy: false,
         popular: true
       },
       {
         name: "Uyghur Salad",
         description: "Beans thread mixed with fresh carrots, peppers, herbs and vinegar dressing",
-        price: "£5.95",
         spicy: false,
         popular: false
       },
       {
         name: "Lighildaq",
         description: "Cooked mung beans served with fresh vegetables, chilli sauce and vinegar",
-        price: "£6.50",
         spicy: false,
         popular: true
       },
       {
         name: "Kala Til Salad",
         description: "Tender beef tongue spiced with chilli sauce and peppers",
-        price: "£10.95",
         spicy: false,
         popular: false
       },
       {
         name: "Pak Choy Salad",
         description: "Fresh pak choy leaves, sesame oil, soy sauce, garlic dressing and a touch of vinegar for a tangy kick",
-        price: "£5.95",
         spicy: false,
         popular: false
       },
       {
         name: "Chicken Wings",
         description: "Grilled, smoky chicken wings marinated in Uyghur spices",
-        price: "£3.95",
         spicy: false,
         popular: false
       }
@@ -87,98 +81,84 @@ export default function Home() {
       {
         name: "Leghmen",
         description: "Our signature dish - fresh hand-pulled noodles served with diced beef / chicken and mixed vegetables in aromatic broth",
-        price: "£14.95",
         spicy: false,
         popular: true
       },
       {
         name: "Polu",
         description: "Traditional pilaf with tender lamb, carrots, and fragrant basmati rice cooked in lamb stock, served with Uyghur salad",
-        price: "£14.95",
         spicy: false,
         popular: true
       },
       {
         name: "Marjan Chop",
         description: "Homemade chopped noodles, stir-fried with beef / chicken and vegetables",
-        price: "£14.95",
         spicy: false,
         popular: false
       },
       {
         name: "Tohu Qordaq (Big Plate Chicken)",
         description: "Spiced chicken with potatoes and bell peppers, cooked with garlic, ginger, soya sauce and other herbs, served with hand-pulled flat noodles",
-        price: "£28.95",
         spicy: true,
         popular: true
       },
       {
         name: "Manta",
         description: "Uyghur manti dumplings, filled with seasoned minced lamb and onions, steamed to juiciness and served with chilli oil",
-        price: "£14.95",
         spicy: false,
         popular: true
       },
       {
         name: "Qoruma Chop",
         description: "Dry stir fried homemade noodles and vegetables",
-        price: "£14.95",
         spicy: true,
         popular: false
       },
       {
         name: "Goshnan",
         description: "Fried flat bread, stuffed with minced lamb, onions and other fresh vegetables",
-        price: "£15.95",
         spicy: false,
         popular: false
       },
       {
         name: "Lazaji",
         description: "Spicy, battered shrimp and crispy fries, seasoned lightly for a savoury taste",
-        price: "£19.99",
         spicy: true,
         popular: false
       },
       {
         name: "Tohu Meghiz",
         description: "Spicy kung pao style chicken with peanuts, vegetables and chilli peppers, served with rice",
-        price: "£13.95",
         spicy: false,
         popular: false
       },
       {
         name: "Tufu",
         description: "Tofu set in a rich, spicy sauce, topped with fresh green onion, served with rice",
-        price: "£14.95",
         spicy: false,
         popular: false
       },
       {
         name: "Pidigen & Much",
         description: "Long chopped aubergine cooked with beef / chicken and peppers, served with rice",
-        price: "£14.95",
         spicy: false,
         popular: false
       },
       {
         name: "Pachaq",
         description: "Lamb hoof marinated in fresh herbs and stirred with spices and bell pepper",
-        price: "£17.95",
         spicy: false,
         popular: false
       },
       {
         name: "Tugre",
         description: "Boiled dumplings filled with minced lamb, onions and herbs, served with a spicy chilli sauce",
-        price: "£14.95",
         spicy: false,
         popular: false
       },
       {
         name: "Beliq Shorpa",
         description: "Chopped sea bass boiled with mushroom and herbs, served with rice",
-        price: "£16.95",
         spicy: false,
         popular: false
       }
@@ -187,14 +167,12 @@ export default function Home() {
       {
         name: "Uyghur Kawap",
         description: "Marinated tender lamb skewers grilled to smoky perfection, sprinkled with cumin and spices",
-        price: "£3.95",
         spicy: true,
         popular: true
       },
       {
         name: "Chochure",
         description: "Minced lamb ravioli, served with a rich lamb bone broth",
-        price: "£10.95",
         spicy: false,
         popular: false
       }
@@ -203,28 +181,24 @@ export default function Home() {
       {
         name: "Uyghur Herbal Tea Pot",
         description: "Traditional home blend of local herbs and spices",
-        price: "£6.50",
         spicy: false,
         popular: true
       },
       {
         name: "Honey Cake",
         description: "Light and fluffy homemade honey cake",
-        price: "£5.95",
         spicy: false,
         popular: true
       },
       {
         name: "Baklava",
         description: "Turkish pistachio baklava, a sweet pastry made of layers of filo filled with chopped nuts and sweetened with honey",
-        price: "£5.95",
         spicy: false,
         popular: false
       },
       {
         name: "Rice Pudding",
         description: "Creamy homemade rice pudding with a hint of cinnamon for a comforting finish",
-        price: "£3.95",
         spicy: false,
         popular: false
       }
@@ -515,16 +489,13 @@ export default function Home() {
                 key={index}
                 className="bg-white border border-gray-200 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 relative"
               >
-                <div className="flex justify-between items-start mb-3">
+                <div className="mb-3">
                   <h3 className="text-xl font-bold text-black flex items-center">
                     {item.name}
                     {item.spicy && (
                       <span className="ml-2 text-red-500" title="Spicy">🌶️</span>
                     )}
                   </h3>
-                  <span className={`${playfair.className} text-2xl font-bold text-red-600`}>
-                    {item.price}
-                  </span>
                 </div>
                 
                 {/* Placeholder for dish image */}
