@@ -85,168 +85,38 @@ export default function Home() {
 
   const menuItems = {
     starters: [
-      {
-        name: "Samsa",
-        description: "Flaky meat pie filled with seasoned minced lamb and onions, baked to perfection",
-        spicy: false,
-        popular: true
-      },
-      {
-        name: "Uyghur Salad",
-        description: "Beans thread mixed with fresh carrots, peppers, herbs and vinegar dressing",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Lighildaq",
-        description: "Cooked mung beans served with fresh vegetables, chilli sauce and vinegar",
-        spicy: false,
-        popular: true
-      },
-      {
-        name: "Kala Til Salad",
-        description: "Tender beef tongue spiced with chilli sauce and peppers",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Pak Choy Salad",
-        description: "Fresh pak choy leaves, sesame oil, soy sauce, garlic dressing and a touch of vinegar for a tangy kick",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Chicken Wings",
-        description: "Grilled, smoky chicken wings marinated in Uyghur spices",
-        spicy: false,
-        popular: false
-      }
+      { name: "Samsa" },
+      { name: "Uyghur Salad" },
+      { name: "Lighildaq" },
+      { name: "Kala Til Salad" },
+      { name: "Pak Choy Salad" },
+      { name: "Chicken Wings" }
     ],
     mains: [
-      {
-        name: "Leghmen",
-        description: "Our signature dish - fresh hand-pulled noodles served with diced beef / chicken and mixed vegetables in aromatic broth",
-        spicy: false,
-        popular: true
-      },
-      {
-        name: "Polu",
-        description: "Traditional pilaf with tender lamb, carrots, and fragrant basmati rice cooked in lamb stock, served with Uyghur salad",
-        spicy: false,
-        popular: true
-      },
-      {
-        name: "Marjan Chop",
-        description: "Homemade chopped noodles, stir-fried with beef / chicken and vegetables",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Tohu Qordaq (Big Plate Chicken)",
-        description: "Spiced chicken with potatoes and bell peppers, cooked with garlic, ginger, soya sauce and other herbs, served with hand-pulled flat noodles",
-        spicy: true,
-        popular: true
-      },
-      {
-        name: "Manta",
-        description: "Uyghur manti dumplings, filled with seasoned minced lamb and onions, steamed to juiciness and served with chilli oil",
-        spicy: false,
-        popular: true
-      },
-      {
-        name: "Qoruma Chop",
-        description: "Dry stir fried homemade noodles and vegetables",
-        spicy: true,
-        popular: false
-      },
-      {
-        name: "Goshnan",
-        description: "Fried flat bread, stuffed with minced lamb, onions and other fresh vegetables",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Lazaji",
-        description: "Spicy, battered shrimp and crispy fries, seasoned lightly for a savoury taste",
-        spicy: true,
-        popular: false
-      },
-      {
-        name: "Tohu Meghiz",
-        description: "Spicy kung pao style chicken with peanuts, vegetables and chilli peppers, served with rice",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Tufu",
-        description: "Tofu set in a rich, spicy sauce, topped with fresh green onion, served with rice",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Pidigen & Much",
-        description: "Long chopped aubergine cooked with beef / chicken and peppers, served with rice",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Pachaq",
-        description: "Lamb hoof marinated in fresh herbs and stirred with spices and bell pepper",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Tugre",
-        description: "Boiled dumplings filled with minced lamb, onions and herbs, served with a spicy chilli sauce",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Beliq Shorpa",
-        description: "Chopped sea bass boiled with mushroom and herbs, served with rice",
-        spicy: false,
-        popular: false
-      }
+      { name: "Leghmen" },
+      { name: "Polu" },
+      { name: "Marjan Chop" },
+      { name: "Tohu Qordaq (Big Plate Chicken)" },
+      { name: "Manta" },
+      { name: "Qoruma Chop" },
+      { name: "Goshnan" },
+      { name: "Lazaji" },
+      { name: "Tohu Meghiz" },
+      { name: "Tufu" },
+      { name: "Pidigen & Much" },
+      { name: "Pachaq" },
+      { name: "Tugre" },
+      { name: "Beliq Shorpa" }
     ],
     sides: [
-      {
-        name: "Uyghur Kawap",
-        description: "Marinated tender lamb skewers grilled to smoky perfection, sprinkled with cumin and spices",
-        spicy: true,
-        popular: true
-      },
-      {
-        name: "Chochure",
-        description: "Minced lamb ravioli, served with a rich lamb bone broth",
-        spicy: false,
-        popular: false
-      }
+      { name: "Uyghur Kawap" },
+      { name: "Chochure" }
     ],
     drinks: [
-      {
-        name: "Uyghur Herbal Tea Pot",
-        description: "Traditional home blend of local herbs and spices",
-        spicy: false,
-        popular: true
-      },
-      {
-        name: "Honey Cake",
-        description: "Light and fluffy homemade honey cake",
-        spicy: false,
-        popular: true
-      },
-      {
-        name: "Baklava",
-        description: "Turkish pistachio baklava, a sweet pastry made of layers of filo filled with chopped nuts and sweetened with honey",
-        spicy: false,
-        popular: false
-      },
-      {
-        name: "Rice Pudding",
-        description: "Creamy homemade rice pudding with a hint of cinnamon for a comforting finish",
-        spicy: false,
-        popular: false
-      }
+      { name: "Uyghur Herbal Tea Pot" },
+      { name: "Honey Cake" },
+      { name: "Baklava" },
+      { name: "Rice Pudding" }
     ]
   };
 
