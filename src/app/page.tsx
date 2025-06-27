@@ -290,12 +290,20 @@ export default function Home() {
           Journey Through Taste
         </h1>
 
-        <div className={`mt-8 px-4 ${homeAnimated ? 'home-button-enter' : 'opacity-0'}`}>
+        <div className={`mt-8 px-4 flex flex-col sm:flex-row gap-4 ${homeAnimated ? 'home-button-enter' : 'opacity-0'}`}>
           <a
             href="/booking"
             className="inline-block bg-red-600 text-white px-6 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-lg sm:text-xl hover:bg-red-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 border-2 border-red-600 hover:border-red-700"
           >
             Book a Table
+          </a>
+          <a
+            href="/menu.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-red-600 px-6 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-lg sm:text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 border-2 border-white hover:border-gray-100"
+          >
+            View Menu
           </a>
         </div>
       </section>
