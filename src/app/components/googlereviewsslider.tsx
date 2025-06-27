@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 interface GoogleReview {
   author_name: string;
@@ -79,10 +79,6 @@ export default function GoogleReviewsSlider({ reviews }: GoogleReviewsSliderProp
           {reviews.map((review, idx) => (
             <div key={idx} className="w-full flex-shrink-0 p-4 md:p-8 lg:p-12 flex items-center justify-center min-h-[250px] md:min-h-[300px]">
               <div className="text-center max-w-3xl mx-auto flex flex-col justify-center h-full"> 
-                {/* Quote icon */}
-                <div className="mb-6">
-                  <Quote className="w-8 h-8 text-orange-400 mx-auto opacity-60" />
-                </div>
 
                 {/* Review text */}
                 <blockquote className="text-gray-700 text-base md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8 italic flex-grow flex items-center justify-center">

@@ -10,8 +10,13 @@ import { Star, Users, Globe } from 'lucide-react'
 
 const useScrollAnimation = () => {
   const [visibleSections, setVisibleSections] = useState(new Set());
+  const [homeAnimated, setHomeAnimated] = useState(false);
 
   useEffect(() => {
+    const homeTimer = setTimeout(() => {
+      setHomeAnimated(true);
+    }, 500); 
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,10 +31,13 @@ const useScrollAnimation = () => {
     const sections = document.querySelectorAll('[data-animate]');
     sections.forEach(section => observer.observe(section));
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(homeTimer);
+    };
   }, []);
 
-  return visibleSections;
+  return { visibleSections, homeAnimated };
 };
 
 const playfair = Playfair_Display({
@@ -49,7 +57,7 @@ export default function Home() {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [activeTab, setActiveTab] = useState('starters');
   const [isTabChanging, setIsTabChanging] = useState(false);
-  const visibleSections = useScrollAnimation();
+  const { visibleSections, homeAnimated } = useScrollAnimation();
 
   useEffect(() => {
     const getReviews = async () => {
@@ -276,11 +284,13 @@ export default function Home() {
         className="relative flex flex-col items-center justify-center text-center text-black p-8 min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/landingpage.jpg')" }}
       >
-        <h1 className={`${playfair.className} text-white text-4xl sm:text-5xl md:text-7xl font-bold mb-8 drop-shadow-xl px-4 text-center animate-fade-in-up`}>
+        <h1 className={`${playfair.className} text-white text-4xl sm:text-5xl md:text-7xl font-bold mb-8 drop-shadow-xl px-4 text-center ${
+          homeAnimated ? 'home-title-enter' : 'opacity-0'
+        }`}>
           Journey Through Taste
         </h1>
 
-        <div className="mt-8 px-4 animate-fade-in-up stagger-delay-2">
+        <div className={`mt-8 px-4 ${homeAnimated ? 'home-button-enter' : 'opacity-0'}`}>
           <a
             href="/booking"
             className="inline-block bg-red-600 text-white px-6 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-lg sm:text-xl hover:bg-red-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 border-2 border-red-600 hover:border-red-700"
