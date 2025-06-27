@@ -48,6 +48,7 @@ interface GoogleReview {
 export default function Home() {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [activeTab, setActiveTab] = useState('starters');
+  const [isTabChanging, setIsTabChanging] = useState(false);
   const visibleSections = useScrollAnimation();
 
   useEffect(() => {
@@ -62,6 +63,17 @@ export default function Home() {
 
     getReviews();
   }, []);
+
+  const handleTabChange = (newTab: string) => {
+        if (newTab !== activeTab) {
+          setIsTabChanging(true);
+          
+          setTimeout(() => {
+            setActiveTab(newTab);
+            setIsTabChanging(false);
+          }, 150);
+        }
+      };
 
   const menuItems = {
     starters: [
@@ -335,7 +347,12 @@ export default function Home() {
           <div className="py-16 px-4 bg-gray-50 rounded-xl mb-16">
             <h2 className={`${playfair.className} text-4xl font-bold text-center text-black mb-12`}>Our Cuisine</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
+              {/* Card 1 - Hand-Pulled Noodles */}
+              <div 
+                className={`text-center scale-in stagger-delay-1 ${visibleSections.has('cuisine-cards') ? 'visible' : ''}`}
+                data-animate
+                id="cuisine-cards"
+              >
                 <div className="mb-6">
                   <Image
                     src="/leghmen.jpg"
@@ -351,7 +368,12 @@ export default function Home() {
                   passed down through generations.
                 </p>
               </div>
-              <div className="text-center">
+
+              {/* Card 2 - Tandoor Breads */}
+              <div 
+                className={`text-center scale-in stagger-delay-2 ${visibleSections.has('cuisine-cards') ? 'visible' : ''}`}
+                data-animate
+              >
                 <div className="mb-6">
                   <Image
                     src="/naan.jpg"
@@ -367,7 +389,12 @@ export default function Home() {
                   creating the perfect crispy exterior and soft interior.
                 </p>
               </div>
-              <div className="text-center">
+
+              {/* Card 3 - Aromatic Spices */}
+              <div 
+                className={`text-center scale-in stagger-delay-3 ${visibleSections.has('cuisine-cards') ? 'visible' : ''}`}
+                data-animate
+              >
                 <div className="mb-6">
                   <Image
                     src="/spices.jpg"
@@ -495,7 +522,11 @@ export default function Home() {
             </div>
             
             {/* Google Reviews Slider Component */}
-            <div className="mb-12">
+            <div 
+              className={`mb-12 fade-in-up stagger-delay-2 ${visibleSections.has('reviews-slider') ? 'visible' : ''}`}
+              data-animate
+              id="reviews-slider"
+            >
               <GoogleReviewsSlider reviews={reviews}/>
             </div>
         </div>
@@ -523,7 +554,7 @@ export default function Home() {
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => handleTabChange(tab.id)}
                   className={`px-3 sm:px-6 py-2 sm:py-3 rounded-md font-semibold transition-all duration-300 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base ${
                     activeTab === tab.id
                       ? 'bg-white text-black shadow-md'
@@ -539,15 +570,17 @@ export default function Home() {
           </div>
 
           {/* Menu Items */}
-          <div 
-            className={`grid gap-6 lg:grid-cols-2 mb-16 fade-in-up stagger-delay-2 ${visibleSections.has('menu-items') ? 'visible' : ''}`}
-            data-animate
-            id="menu-items"
-          >
+          <div className={`grid gap-6 lg:grid-cols-2 mb-16 menu-items-container ${
+            isTabChanging ? 'menu-items-fade-out' : 'menu-items-fade-in'
+          }`}>
             {menuItems[activeTab as keyof typeof menuItems].map((item, index) => (
               <div
-                key={index}
-                className="bg-white border border-gray-200 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 relative"
+                key={`${activeTab}-${index}`} 
+                className="bg-white border border-gray-200 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 relative menu-item-card"
+                style={{ 
+                  opacity: isTabChanging ? 0 : 1,
+                  animationDelay: isTabChanging ? '0s' : `${index * 0.1}s`
+                }}
               >
                 <div className="mb-3">
                   <h3 className="text-xl font-bold text-black flex items-center">
