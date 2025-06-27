@@ -273,7 +273,7 @@ export default function Home() {
           <button onClick={() => scrollToSection('home')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Home</button>
           <button onClick={() => scrollToSection('about')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">About</button>
           <button onClick={() => scrollToSection('reviews')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Reviews</button>
-          <button onClick={() => scrollToSection('menu')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Menu</button>
+          <button onClick={() => scrollToSection('gallery')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Gallery</button>
           <button onClick={() => scrollToSection('contact')} className="hover:underline whitespace-nowrap text-sm sm:text-lg">Contact</button>
         </div>
       </nav>
@@ -550,23 +550,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MENU SECTION */}
-      <section id="menu" className="py-20 px-4 bg-white">
+      {/* GALLERY SECTION */}
+      <section id="gallery" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div 
-            className={`text-center mb-16 fade-in-up ${visibleSections.has('menu-header') ? 'visible' : ''}`}
+            className={`text-center mb-16 fade-in-up ${visibleSections.has('gallery-header') ? 'visible' : ''}`}
             data-animate
-            id="menu-header"
+            id="gallery-header"
           >
-            <h1 className={`${playfair.className} text-3xl sm:text-5xl md:text-6xl font-bold mb-4 text-black`}>Our Menu</h1>
-            <p className="text-xl text-gray-700">Authentic flavors from the ancient Silk Road</p>
+            <h1 className={`${playfair.className} text-3xl sm:text-5xl md:text-6xl font-bold mb-4 text-black`}>Gallery</h1>
           </div>
           
           {/* Tab Navigation */}
           <div 
-            className={`flex justify-center mb-12 px-4 fade-in-up stagger-delay-1 ${visibleSections.has('menu-tabs') ? 'visible' : ''}`}
+            className={`flex justify-center mb-12 px-4 fade-in-up stagger-delay-1 ${visibleSections.has('gallery-tabs') ? 'visible' : ''}`}
             data-animate
-            id="menu-tabs"
+            id="gallery-tabs"
           >
             <div className="flex flex-wrap bg-gray-100 rounded-lg p-1 shadow-lg justify-center gap-1">
               {tabs.map((tab) => (
@@ -587,56 +586,27 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Menu Items */}
-          <div className={`grid gap-6 lg:grid-cols-2 mb-16 menu-items-container ${
+          {/* Gallery Items */}
+          <div className={`grid gap-6 lg:grid-cols-3 xl:grid-cols-4 mb-16 menu-items-container ${
             isTabChanging ? 'menu-items-fade-out' : 'menu-items-fade-in'
           }`}>
             {menuItems[activeTab as keyof typeof menuItems].map((item, index) => (
               <div
                 key={`${activeTab}-${index}`} 
-                className="bg-white border border-gray-200 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 relative menu-item-card"
+                className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative menu-item-card"
                 style={{ 
                   opacity: isTabChanging ? 0 : 1,
                   animationDelay: isTabChanging ? '0s' : `${index * 0.1}s`
                 }}
               >
-                <div className="mb-3">
-                  <h3 className="text-xl font-bold text-black flex items-center">
-                    {item.name}
-                    {item.spicy && (
-                      <span className="ml-2 text-red-500" title="Spicy">🌶️</span>
-                    )}
-                  </h3>
-                </div>
-                
-                {/* Placeholder for dish image */}
-                <div className="my-4 w-full h-48 bg-gray-100 rounded-lg overflow-hidden">
+                <div className="w-full h-64 bg-gray-100 overflow-hidden">
                   <Image 
                     src={`/dishes/${item.name.toLowerCase().replace(/\s+/g, '-')}.jpg`} 
                     alt={item.name}
                     width={400}
                     height={300}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
-                </div>
-                
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  {item.description}
-                </p>
-
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-2 text-sm">
-                    {item.spicy && (
-                      <span className="bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                        Spicy
-                      </span>
-                    )}
-                    {item.popular && (
-                      <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
-                        Customer Favorite
-                      </span>
-                    )}
-                  </div>
                 </div>
               </div>
             ))}
