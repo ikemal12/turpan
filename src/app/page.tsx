@@ -1,4 +1,4 @@
-const metadata = {
+export const metadata = {
   title: 'Turpan Uyghur Restaurant',
   description: 'Authentic Uyghur cuisine bringing the flavors of Central Asia to London',
 };
