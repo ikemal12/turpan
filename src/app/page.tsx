@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Head from "next/head";
 import React, { useEffect, useState } from 'react';
 import { fetchGoogleReviews } from './utils/googlereviews';
 import GoogleReviewsSlider from "./components/googlereviewsslider";
@@ -135,6 +136,11 @@ export default function Home() {
   };
 
   return (
+    <>
+    <Head>
+      <title>Turpan Uyghur Restaurant</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <div className="flex flex-col min-h-screen">
       <div className="w-full overflow-x-hidden">
       {/* Fixed Navbar */}
@@ -604,5 +610,6 @@ export default function Home() {
       </footer>
       </div>
     </div>
+    </>
   );
 }
