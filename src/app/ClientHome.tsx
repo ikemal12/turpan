@@ -376,7 +376,7 @@ export default function Home() {
                   <FontAwesomeIcon icon={solidStar} />
                   <FontAwesomeIcon icon={faStarHalfAlt} />
                 </div>
-                <span className="text-sm text-gray-600">4.6/5</span>
+                <span className="text-sm text-gray-600">4.7/5</span>
               </div>
 
               <div className="flex items-center space-x-2">

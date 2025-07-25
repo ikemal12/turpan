@@ -17,9 +17,9 @@ const validateEmail = (email: string): boolean => {
 };
 
 const validatePhone = (phone: string): boolean => {
-  const ukPhoneRegex = /^(?:(?:\+44\s?|0044\s?|0)(?:\d{2}\s?\d{4}\s?\d{4}|\d{3}\s?\d{3}\s?\d{4}|\d{4}\s?\d{6}|\d{4}\s?\d{3}\s?\d{3}|\d{5}\s?\d{5}))$/;
-  const cleanPhone = phone.replace(/[\s-().]/g, '');
-  return ukPhoneRegex.test(cleanPhone) && cleanPhone.length >= 10 && cleanPhone.length <= 15;
+  const internationalPhoneRegex = /^\+\d{1,4}[\s\-\.\(\)]*\d[\d\s\-\.\(\)]{3,18}$/;
+  const cleanPhone = phone.replace(/[\s\-\.\(\)]/g, '');
+  return internationalPhoneRegex.test(phone) && cleanPhone.length >= 8 && cleanPhone.length <= 20;
 };
 
 const validateDate = (dateString: string): { isValid: boolean; error?: string } => {
@@ -85,12 +85,13 @@ const validatePartySize = (partySize: number): { isValid: boolean; error?: strin
 
 const checkForDoubleBooking = async (email: string, phone: string, date: string, time: string) => {
   try {
+    const normalizedPhone = phone.replace(/[\s\-\.\(\)]/g, '');
+    
     const { data: existingBookings, error } = await supabaseAdmin
       .from('Reservations')
       .select('*')
       .eq('date', date)
-      .eq('time', time)
-      .or(`email.eq.${email},phone.eq.${phone}`);
+      .eq('time', time);
     
     if (error) {
       console.error('Error checking for double booking:', error);
@@ -98,10 +99,17 @@ const checkForDoubleBooking = async (email: string, phone: string, date: string,
     }
     
     if (existingBookings && existingBookings.length > 0) {
-      return { 
-        hasConflict: true, 
-        error: 'You already have a booking at this time, or this time slot may be unavailable' 
-      };
+      const hasConflict = existingBookings.some(booking => 
+        booking.email === email || 
+        booking.phone.replace(/[\s\-\.\(\)]/g, '') === normalizedPhone
+      );
+      
+      if (hasConflict) {
+        return { 
+          hasConflict: true, 
+          error: 'You already have a booking at this time, or this time slot may be unavailable' 
+        };
+      }
     }
     
     return { hasConflict: false };
@@ -153,7 +161,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!validatePhone(sanitizedPhone)) {
-      validationErrors.phone = 'Please enter a valid UK phone number';
+      validationErrors.phone = 'Please enter a valid international phone number (e.g., +44 1234567890)';
     }
 
     const partySizeNum = parseInt(partySize);

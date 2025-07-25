@@ -2,11 +2,36 @@
 import { useState, useEffect } from 'react'
 import { Calendar, Clock, Users, Phone, Mail, User, CheckCircle, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react'
 
+const countryCodes = [
+  { code: '+44', country: 'UK', flag: '🇬🇧' },
+  { code: '+1', country: 'US/Canada', flag: '🇺🇸' },
+  { code: '+46', country: 'Sweden', flag: '🇸🇪' },
+  { code: '+47', country: 'Norway', flag: '🇳🇴' },
+  { code: '+45', country: 'Denmark', flag: '🇩🇰' },
+  { code: '+49', country: 'Germany', flag: '🇩🇪' },
+  { code: '+33', country: 'France', flag: '🇫🇷' },
+  { code: '+39', country: 'Italy', flag: '🇮🇹' },
+  { code: '+34', country: 'Spain', flag: '🇪🇸' },
+  { code: '+31', country: 'Netherlands', flag: '🇳🇱' },
+  { code: '+32', country: 'Belgium', flag: '🇧🇪' },
+  { code: '+41', country: 'Switzerland', flag: '🇨🇭' },
+  { code: '+43', country: 'Austria', flag: '🇦🇹' },
+  { code: '+48', country: 'Poland', flag: '🇵🇱' },
+  { code: '+7', country: 'Russia', flag: '🇷🇺' },
+  { code: '+91', country: 'India', flag: '🇮🇳' },
+  { code: '+86', country: 'China', flag: '🇨🇳' },
+  { code: '+81', country: 'Japan', flag: '🇯🇵' },
+  { code: '+82', country: 'South Korea', flag: '🇰🇷' },
+  { code: '+61', country: 'Australia', flag: '🇦🇺' },
+  { code: '+64', country: 'New Zealand', flag: '🇳🇿' },
+]
+
 export default function BookingForm() {
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
+    countryCode: '+44',
     partySize: '',
     date: '',
     time: '',
@@ -76,17 +101,23 @@ export default function BookingForm() {
     setStatus('Sending...')
     
     try {
+      const fullPhoneNumber = `${form.countryCode} ${form.phone}`
+      const formData = {
+        ...form,
+        phone: fullPhoneNumber
+      }
+      
       const res = await fetch('/api/reserve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(formData),
       })
 
       const responseData = await res.json()
 
       if (res.ok) {
         setStatus('success')
-        setForm({ name: '', email: '', phone: '', partySize: '', date: '', time: '' })
+        setForm({ name: '', email: '', phone: '', countryCode: '+44', partySize: '', date: '', time: '' })
         setSelectedDateIndex(null)
       } else {
         if (responseData.errors) {
@@ -171,7 +202,7 @@ export default function BookingForm() {
             Contact Information
           </h3>
           
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-1 gap-4">
             <div className="relative">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
               <input 
@@ -186,14 +217,28 @@ export default function BookingForm() {
             
             <div className="relative">
               <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-              <input 
-                name="phone" 
-                placeholder="Phone Number" 
-                value={form.phone} 
-                onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all placeholder:text-gray-600 text-gray-800"
-                required 
-              />
+              <div className="flex">
+                <select
+                  name="countryCode"
+                  value={form.countryCode}
+                  onChange={handleChange}
+                  className="pl-10 pr-2 py-3 border border-gray-300 border-r-0 rounded-l-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white text-gray-800 min-w-[120px]"
+                >
+                  {countryCodes.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.flag} {country.code}
+                    </option>
+                  ))}
+                </select>
+                <input 
+                  name="phone" 
+                  placeholder="Enter your number" 
+                  value={form.phone} 
+                  onChange={handleChange}
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all placeholder:text-gray-600 text-gray-800"
+                  required 
+                />
+              </div>
             </div>
           </div>
 
