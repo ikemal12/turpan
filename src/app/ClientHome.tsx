@@ -60,7 +60,7 @@ export const metadata = {
 
 export default function Home() {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
-  const [activeTab, setActiveTab] = useState('starters');
+  const [activeTab, setActiveTab] = useState('mains');
   const [isTabChanging, setIsTabChanging] = useState(false);
   const { visibleSections, homeAnimated } = useScrollAnimation();
 
