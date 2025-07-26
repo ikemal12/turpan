@@ -1,7 +1,20 @@
-let reviewsCache: { data: any; timestamp: number } | null = null;
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  time: number;
+  profile_photo_url?: string;
+}
+
+interface ReviewsCache {
+  data: GoogleReview[];
+  timestamp: number;
+}
+
+let reviewsCache: ReviewsCache | null = null;
 const CACHE_DURATION = 30 * 60 * 1000;  
 
-export async function fetchGoogleReviews() {
+export async function fetchGoogleReviews(): Promise<GoogleReview[]> {
   try {
     if (reviewsCache && Date.now() - reviewsCache.timestamp < CACHE_DURATION) {
       return reviewsCache.data;
